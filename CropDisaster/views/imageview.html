@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>작물 재해 특성 분석 자동화 및 시각화 시스템</title>
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bootstrap 4 -->
+        <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link
+            rel="stylesheet"
+            href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"/>
+    </head>
+
+
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <h4 class="m-0"><small style="vertical-align: sub;">작물 재해 특성 분석 자동화 및 시각화 시스템</small></h4>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/" class="brand-link" style="text-align: center;">
+                    <span class="brand-text font-weight-light">메인화면</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul
+                            class="nav nav-pills nav-sidebar flex-column"
+                            data-widget="treeview"
+                            role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any
+                            other icon font library -->
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>대쉬보드</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/input" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>연구정보입력</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/search" class="nav-link">
+                                    <i class="nav-icon fas fa-search"></i>
+                                    <p>연구정보검색</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">연구데이터 가시화</h1>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item ">
+                                        <a href="/search">연구정보검색</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">연구데이터 가시화</li>
+                                </ol>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-wrapper -->
+
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">연구 설정</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                        <div class="row d-flex justify-content-between" style="margin-left: 0px; margin-right: 0px; margin-bottom: 10px;">
+                                            <h4 class="col" style="padding-left: 0px;">영상 라벨 선택</h4>
+                                            <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_label" value="1" checked>&nbsp;대조구 선택</label>
+                                            <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_label" value="2">&nbsp;실험구 선택</label>
+                                            <button id="modify_chart_color" class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px; margin-left: 3px; margin-right: 3px;">색상변경</button>
+                                            <button id="labelButton" onclick='selectAll(this.id)' class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px; margin-left: 3px;">전체선택</button>
+                                        </div>
+                                        <!-- <div style="display: flex; align-items: center;">
+                                            <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_label" value="1" checked="checked">&nbsp;대조구 선택</label>
+                                            <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_label" value="2">&nbsp;실험구 선택</label>
+                                        </div> -->
+                                        <div class="form-control" id="controlLabel" style="overflow-y:scroll; height: 133px;"></div>
+                                        <div class="form-control" id="label" style="overflow-y:scroll; height: 133px; display: none;"></div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="row d-flex justify-content-between" style="margin-left: 0px; margin-right: 0px; margin-bottom: 10px;">
+                                                <h4 class="col" style="padding-left: 0px;">영상 각도 선택</h4>
+                                                <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_angle" value="2" checked>&nbsp;시간별 보기</label>
+                                                <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_angle" value="1">&nbsp;각도별 보기</label>
+                                                <button id="angleButton" onclick='selectAll(this.id)' class="btn btn-primary waves-effect waves-light" value="angBox" style="float: right; padding-bottom: 3px; padding-top: 3px;">전체선택</button>
+                                            </div>
+                                            <!-- <div style="display: flex; align-items: center;">
+                                                <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_angle" value="2" checked>&nbsp;시간별 보기</label>
+                                                <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_angle" value="1">&nbsp;각도별 보기</label>
+                                            </div> -->
+                                            <div class="form-control" id="controlAngle" style="overflow-y:scroll; height: 133px;"></div>
+                                            <div class="form-control" id="angle" style="overflow-y:scroll; height: 133px; display: none;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-4 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="row d-flex justify-content-between" style="margin-left: 0px; margin-right: 0px; margin-bottom: 10px;">
+                                                <h4>영상 파라미터 설정</h4>
+                                                <button id="dataButton" onclick='selectAll(this.id)' class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px;">전체선택</button>
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_info" value="2" checked>&nbsp;각도별 통합평균 그래프 보기</label>
+                                                <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_info" value="1">&nbsp;각도별 그래프 보기</label>
+                                            </div>
+                                            <div class="form-control" id="setForm" style="overflow-y:scroll; height: 133px;"></div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!-- form end -->
+                            </div>
+                        </div>
+                        <!-- <card end -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">이미지</h3>
+                                <button id="export_image" class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px;" onclick="downloadImage()">내보내기</button>
+                                <button id="modify_image_color" class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px; margin-left: 3px; margin-right: 3px;">스트레스색상변경</button>
+                                <button id="modify_image_annotation" class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px; margin-left: 3px; margin-right: 3px;">재해구간설정</button>
+                                <div id="roi_div" style="float: right; display: none;">
+                                    <label style="margin-right: 8px; margin-left: 8px; margin-bottom: 0px; vertical-align: middle;"><input type="radio" name="radio_btn_ROI" value="2" checked>&nbsp;None </label>
+                                    <label style="margin-right: 8px; margin-left: 5px; margin-bottom: 0px; vertical-align: middle;"><input type="radio" name="radio_btn_ROI" value="1">&nbsp;ROI </label>
+                                </div>
+                            </div>
+                            <div class="card-body row">
+                                    <!-- <div class="col-lg-12 row" style="display: flex; flex-direction: column;">
+                                        <div class="" id="controlImages" style="display: flex; "></div>
+                                        <div id="control_div" style="margin-left: 10px; margin-right: 10px;"><input id="control_slider" type="text" style="width: 100%;"></div> -->
+
+                                        <!-- <div class="form-group row" style="margin-right: 0px;margin-left: 0px; margin-top: 20px;">
+                                            <label class="col-lg-1 col-form-label">F :</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" id="f_axes" name="admin" class="form-control" maxlength="10" autocomplete="off" value="0, 0"/>
+                                            </div>
+                                            <label class="col-lg-1 col-form-label">L :</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" id="f_axes" name="admin" class="form-control" maxlength="10" autocomplete="off" value="4000, 6000"/>
+                                            </div>
+                                            <div class="col-lg-2" style="display: flex; align-items: center; justify-content: center;" onclick="ROI()"><i class="nav-icon fas fa-search"></i></div>
+                                        </div> -->
+                                    <!-- </div> -->
+
+                                    <div class="col-lg-12" style="overflow-x: scroll;"><table class="table table-hover cell-border text-align: center;" id="controlTable"></table></div>
+                                    <div class="col-lg-12" style="margin-left: 3px; padding-right: 20px; margin-top: 5px; margin-bottom: 30px;"><input id="control_slider" type="text" style="width: 100%;"></div>
+                                    <div class="col-lg-12" style="overflow-x: scroll;"><table class="table table-hover cell-border text-align: center;" id="imgTable"></table></div>
+                                    <div class="col-lg-12" style="padding-right: 20px; margin-left: 3px; margin-top: 5px;"><input id="imgSlider" type="text" style="width: 100%;"></div>
+                                    <div class="row col-lg-12" style="margin-top: 30px; margin-right: 10px">
+                                        <label class="col-lg-11" id="hueRange_div" style="display: flex; align-items: flex-end; ">
+                                            <h6 style="margin-right: 15px; margin-bottom: 0px; font-weight: 700">Hue</h6>
+                                            <h6 style="margin-right: 15px; margin-bottom: 0px; font-weight: 700">0</h6>
+                                            <input id="hueRangeSlider" type="text" style="width: 100%;">
+                                            <h6 style="margin-left: 15px; margin-bottom: 0px; font-weight: 700">255</h6>
+                                        </label>
+                                        <button class="btn btn-primary waves-effect waves-light col-lg-1" onclick="getMaskImage(labelCheck, angleCheck, imgPath, mySlider, 'result_'), 
+                                                getMaskImage(controlLabel, controlAngle, controlPath, control_slider, 'control_'), updateColorChart()" id="image_button">계산</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">연구 설정</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-lg-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="row d-flex justify-content-between" style="margin-left: 0px; margin-right: 0px; margin-bottom: 10px;">
+                                                <h4 class="col" style="padding-left: 0px;">영상 파라미터 설정</h4>
+                                                <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_info" value="2" checked>&nbsp;각도별 통합평균 그래프 보기</label>
+                                                <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_info" value="1">&nbsp;각도별 그래프 보기</label>
+                                                <button id="dataButton" onclick='selectAll(this.id)' class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px;">전체선택</button>
+                                            </div>
+                                            <!-- <div style="display: flex; align-items: center;">
+                                                <label style="margin-right: 8px; margin-left: 8px;"><input type="radio" name="radio_btn_info" value="2" checked>&nbsp;각도별 통합평균 그래프 보기</label>
+                                                <label style="margin-right: 8px; margin-left: 5px;"><input type="radio" name="radio_btn_info" value="1">&nbsp;각도별 그래프 보기</label>
+                                            </div> -->
+                                            <div class="form-control" id="setForm" style="overflow-y:scroll; height: 133px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="display: block" id="card_table">
+                            <div class="card-header">
+                                <h3 class="card-title">수치데이터</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover" id="tableId">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Label</th>
+                                                <th>Angle</th>
+                                                <th>Time</th>
+                                                <th>Area</th>
+                                                <th>BoundaryPointCount</th>
+                                                <th>BoundaryPointRoundness</th>
+                                                <th>BoundaryPointsToAreaRatio</th>
+                                                <th>CaliperLength</th>
+                                                <th>Circumference</th>
+                                                <th>CenterOfMassX</th>
+                                                <th>CenterOfMassY</th>
+                                                <th>Compactness</th>
+                                                <th>ConvexHullArea</th>
+                                                <th>ConvexHullCircumference</th>
+                                                <th>Excentricity</th>
+                                                <th>ObjectExtentX</th>
+                                                <th>ObjectExtentY</th>
+                                                <th>MeanColorBlue</th>
+                                                <th>MeanColorBlueVariance</th>
+                                                <th>MeanColorGreen</th>
+                                                <th>MeanColorGreenVariance</th>
+                                                <th>MeanColorRed</th>
+                                                <th>MeanColorRedVariance</th>
+                                                <th>MinEnclosingCircleDiameter</th>
+                                                <th>MinAreaRectangleArea</th>
+                                                <th>Roundness</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table_body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- table card end -->
+
+                        <!-- chart card start -->
+                        <div class="row">
+                            <div class="col" id="card_chart"></div>
+                        </div>
+                        <!-- chart card end -->
+                    </div>
+                    <!-- container end -->
+                </div>
+                <!-- content end -->
+            </div>
+            <!-- ./wrapper -->
+        </div>
+
+        <!-- fullsize image modal start -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content modal-xl">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <img id="img_modal" src="" width="100%" height="auto">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+
+        <!-- color picker modal start -->
+        <div class="modal fade" id="labelModal" tabindex="-1" role="dialog" aria-labelledby="labelModal_topic">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="labelModal_topic">차트 라인 컬러 선택</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <div class="form-control" id="label_modal" style="height: 75px; overflow-y: scroll;"></div>
+                        <div id="background_color" style="height: 50px; background: hsl(100, 100%, 50%); margin-top: 30px; margin-bottom: 20px;"></div>
+                        <label class="row" id="hue_div" style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 20px;"><h6>Hue</h6><input class="col-sm-9" id="hue" type="text" style="width: 100%;"></label>
+                        <label class="row" id="saturation_div" style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 20px;"><h6>Saturation</h6><input class="col-sm-9" id="saturation" type="text" style="width: 100%;"></label>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="applyLabelColor()" class="btn btn-default" data-dismiss="modal">적용</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+
+        <!-- color picker modal start -->
+        <div class="modal fade" id="disaterModal" tabindex="-1" role="dialog" aria-labelledby="disaterModal_topic">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="disaterModal_topic">이미지 스트레스구간 색상 선택</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <div id="background_color_disater" style="height: 50px; background: rgb(255, 0, 0); margin-top: 30px; margin-bottom: 20px;"></div>
+                        <label class="" id="red_div" style="margin-right: 20px; margin-top: 20px; margin-bottom: 20px; display: flex; align-items: flex-end;">
+                            <h6 class="col-lg-2">Red</h6>
+                            <input class="col-lg-10" id="red_disater" type="text" style="width: 100%;">
+                        </label>
+                        <label class="" id="green_div" style="margin-right: 20px; margin-top: 20px; margin-bottom: 20px; display: flex; align-items: flex-end;">
+                            <h6 class="col-lg-2">Green</h6>
+                            <input class="col-lg-10" id="green_disater" type="text" style="width: 100%;">
+                        </label>
+                        <label class="" id="blue_div" style="margin-right: 20px; margin-top: 20px; margin-bottom: 20px; display: flex; align-items: flex-end;">
+                            <h6 class="col-lg-2">Blue</h6>
+                            <input class="col-lg-10" id="blue_disater" type="text" style="width: 100%;">
+                        </label>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="apply_disater_color()" class="btn btn-default" data-dismiss="modal">적용</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- annotation modal start -->
+        <div class="modal fade" id="annotationModal" tabindex="-1" role="dialog" aria-labelledby="annotationModal_topic">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="annotationModal_topic">재해구간 설정</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times fa-2x"></i></button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <!-- <select id="type_chart" name="type" class="form-control"></select> -->
+
+                        <div id="background_color_annotation" style="height: 50px; background: hsl(360, 100%, 50%); margin-top: 30px; margin-bottom: 20px;"></div>
+                        <label class="row" id="hue_div" style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 20px;"><h6>Hue</h6><input class="col-sm-9" id="hue_annotation" type="text" style="width: 100%;"></label>
+                        <label class="row" id="saturation_div" style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 20px;"><h6>Saturation</h6><input class="col-sm-9" id="saturation_annotation" type="text" style="width: 100%;"></label>
+                        
+                        <label class="col-lg" style="text-align: initial;">적용된 스트레스 구간</label>
+                        
+                        <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                            <select id="annotation_select" name="type" class="form-control col-lg-10"></select>
+                            <!-- <button type="button" onclick="delete_annotation()" class="btn btn-default col-lg-2" data-dismiss="modal">삭제</button> -->
+                            <button type="button" onclick="deleteAll_annotation()" class="btn btn-default col-lg-2" data-dismiss="modal">삭제</button>
+                        </div>
+                        <!-- <select id="type_stdate" name="type" class="form-control" style="margin-bottom: 10px; margin-top: 30px;"></select>
+                        <select id="type_eddate" name="type" class="form-control" style="margin-bottom: 10px; margin-top: 30px;"></select> -->
+                        <div class="form-group row" style="margin-bottom: 10px; margin-top: 30px;margin-left: 0px;margin-right: 0px;">
+                            <select type="text" name="date" id="type_stdate" class="col-sm-5 form-control" autocomplete="off"></select>
+                            <label class="col-sm-2 col-form-label" style="text-align: center"> ~ </label>
+                            <select type="text" name="date" id="type_eddate" class="col-sm-5 form-control" autocomplete="off"></select>
+                        </div>
+                        <div class="form-group" id="anno_div" style="display: flex;">
+                            <select id="type_disater" name="type" class="form-control" style="margin-right: 10px;">
+                                <option value="가뭄">가뭄</option>
+                                <option value="고온">고온</option>
+                                <option value="염">염</option>
+                                <option value="기타">기타</option>
+                                <option value="direct">직접입력</option>
+                            </select>
+                            <input type="text" id="selfBox", name="selfBox" disabled/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="apply_annotation_all() " class="btn btn-default" data-dismiss="modal">적용</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        <!-- <button type="button" onclick="apply_annotation()" class="btn btn-default" data-dismiss="modal">현재 차트만 적용</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <!-- <script> $.widget.bridge('uibutton', $.ui.button); </script> -->
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="plugins/moment/moment.min.js"></script>
+        <script src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script
+            src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.js"></script>
+        <!-- datatables -->
+        <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <!-- datatables expert plugin -->
+        <script src="../../plugins/jszip/jszip.min.js"></script>
+        <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <!-- chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-error-bars"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@0.5.7/chartjs-plugin-annotation.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@0.5.7/src/index.min.js"></script> -->
+        <!-- bootsterp-slider -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+        <!-- d3js -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            var LCCheck = 0, LCheck = 0, ACheck = 0, ACCheck = 0, VCheck = 0;
+            var get_res_id
+            var table = null;                                       // 테이블                   
+            var datas = null;                                       // 데이터 전체 저장
+            var imgPath = {};                                       // 선택 이미지 경로 저장 [angle][label] = "path"
+            var controlPath = {};                                   // 대조구 이미지 경로 저장 [angle][label] = "path"
+            var imgDate = [], controlImgDate = [], dateAll = [];    // 선택 이미지 시작~끝 날짜
+            var Attri = null;                                       // 전체 속성 값 저장
+            var chart = {};                                         // 차트
+            var controlLabel = [], controlAngle = []                // 대조구 라벨, 각도 전체 저장
+            var labelCheck = [], angleCheck = []                    // 라벨, 각도 체크 전체 저장
+            var labelColor = []                                     // 라벨 색상 지정 저장
+            var envirData = []                                      // 환경정보 데이터 저장
+            var waterData = []                                      // 물사용량 데이터 저장
+            var colorData = []                                      // 컬러 데이터 저장
+            var annolist = []                                       // 재해구간 데이터 저장
+            var annolabel = []                                      // 재해구간 라벨 데이터 저장
+            var labelGroup = {}                                     // 라벨 그룹 오브젝트 형태 저장
+            var groupKey = ''                                       // 라벨 그룹핑 여부
+            var checkGroupLabel = []                                // 실험구 라벨 그룹 체크 전체 저장
+            var controlGroupLabel = []                              // 대조구 라벨 그룹 체크 전체 저장
+            
+            // 이미지 테이블 생성 및 원본 모달
+            function ShowImage(Imgsrc, Label) {
+                $("#myModalLabel").text(Label);
+                $("#img_modal").attr('src', Imgsrc);
+                $("#myModal").modal("show");
+            }
+
+
+            function updateAll() {
+                getDisasterLabel(labelCheck, angleCheck, imgPath, mySlider, true);
+                getDisasterLabel(controlLabel, controlAngle, controlPath, control_slider, false);
+            }
+
+            function getDisasterLabel(label, angle, path, slider, bool) {
+                annolabel = []
+                $.each(label, (i, v) => {
+                    if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) {
+                        $.each(angle, (i2, v2) => {
+                            if(path[v2][v][slider.getValue()] != undefined) {
+                                var tpath = path[v2][v][slider.getValue()].split("/mnt/hdd2/CropDisaster")[1];
+                                var temp = tpath.split("/")[tpath.split("/").length - 1].split(" ")[0];
+                                var label_id = "disater_" + bool + "_" + v + "_" + v2 + "_" + temp.split("_")[temp.split("_").length - 1];
+                                var div_id = "div_" + bool + "_" + v + "_" + v2 + "_" + temp.split("_")[temp.split("_").length - 1];
+                                var date = temp.split("_")[temp.split("_").length - 1];
+                                var html = ""
+
+                                if (annolist.length == 0) {
+                                    $("#" + label_id).html(`정상생육 ` + (((new Date(date) - new Date(dateAll[0])) / (1000 * 3600 * 24)) + 1) + `일차 &nbsp`);
+                                    $("#" + div_id).css("background-color", "hsla(0, 0%, 0%, 0.0)");
+                                } else {
+                                    $.each(annolist, (i3, v3) => { 
+                                        var name = v3.split("_")[1].split("-")[0];
+                                        if (v3.split("-")[v3.split("-").length - 1] == "종료" && date > v3.split("_")[0]) {
+                                            html = name + "회복 " + ((new Date(date) - new Date(v3.split("_")[0])) / (1000 * 3600 * 24)) + " 일차 "
+                                            $("#" + label_id).html(html);
+                                            $("#" + div_id).css("background-color", "hsla(100, 100%, 50%, 0.7)");
+                                        }
+                                        else if (v3.split("-")[v3.split("-").length - 1] == "시작" && date >= v3.split("_")[0]) {
+                                            html = name + " " + ((new Date(date) - new Date(v3.split("_")[0])) / (1000 * 3600 * 24) + 1) + " 일차 "
+                                            $("#" + label_id).html(html);
+                                            $("#" + div_id).css("background-color", "hsla(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%, 0.7)");
+                                        } 
+                                    })
+                                }
+                            }
+                        })
+                    }  else if ($(':radio[name="radio_btn_angle"]:checked').val() == 2) {
+                        try{
+                            $.each(path[angle[slider.getValue()]][v], (i2, v2) => { 
+                                if (path[angle[slider.getValue()]][v][i2] != undefined) {
+                                    var tpath = path[angle[slider.getValue()]][v][i2].split("/mnt/hdd2/CropDisaster")[1];
+                                    var temp = tpath.split("/")[tpath.split("/").length - 1].split(" ")[0];
+                                    var label_id = "disater_" + bool + "_" + v + "_" + angle[slider.getValue()] + "_" + temp.split("_")[temp.split("_").length - 1];
+                                    var div_id = "div_" + bool + "_" + v + "_" + angle[slider.getValue()] + "_" + temp.split("_")[temp.split("_").length - 1];
+                                    var date = temp.split("_")[temp.split("_").length - 1];
+                                    var html = ""
+                                    if (annolist.length == 0) {
+                                        $("#" + label_id).html(`정상생육 ` + (((new Date(date) - new Date(dateAll[0])) / (1000 * 3600 * 24)) + 1) + `일차 &nbsp`);
+                                        $("#" + div_id).css("background-color", "hsla(0, 0%, 0%, 0.0)");
+                                    } else {
+                                        $.each(annolist, (i3, v3) => { 
+                                            var name = v3.split("_")[1].split("-")[0];
+                                            if (v3.split("-")[v3.split("-").length - 1] == "종료" && date > v3.split("_")[0]) {
+                                                html = name + "회복 " + ((new Date(date) - new Date(v3.split("_")[0])) / (1000 * 3600 * 24)) + "일차 "
+                                                $("#" + label_id).html(html);
+                                                $("#" + div_id).css("background-color", "hsla(100, 100%, 50%, 0.7)");
+                                            }
+                                            else if (v3.split("-")[v3.split("-").length - 1] == "시작" && date >= v3.split("_")[0]) {
+                                                html = name + " " + ((new Date(date) - new Date(v3.split("_")[0])) / (1000 * 3600 * 24) + 1) + "일차 "
+                                                $("#" + label_id).html(html);
+                                                $("#" + div_id).css("background-color", "hsla(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%, 0.7)");
+                                            } 
+                                        })
+                                        
+                                    }
+                                }
+                            })
+                        } catch{}
+                    } 
+                }) 
+            }
+            function getMaskImage(label, angle, path, slider, key) {
+                var ids = [];
+                var imgs = [];
+                var crop = ($(':radio[name="radio_btn_ROI"]:checked').val() == 1 ? true : false)
+                $("#image_button").attr("disabled", true);
+
+                $.each(label, (i, v) => {
+                    if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) {
+                        $.each(angle, (i2, v2) => {
+                            try{
+                                var img = path[v2][v][slider.getValue()]
+                                var mask = img.split(".")[0] + "_result.png"
+                                var templabel = img.split("/")[img.split("/").length - 1].split(" ")[0];
+                                imgs.push([img, mask]);
+                                ids.push([v, v2, templabel.split("_")[templabel.split("_").length - 1]])
+                            } catch {}
+                        })
+                    } else {
+                        $.each(path[angle[slider.getValue()]][v], (i2, v2) => { 
+                            try {
+                                var img = path[angle[slider.getValue()]][v][i2];
+                                var mask = img.split(".")[0] + "_result.png"
+                                var templabel = img.split("/")[img.split("/").length - 1].split(" ")[0];
+                                imgs.push([img, mask]);
+                                ids.push([v, templabel.split("_")[templabel.split("_").length - 1]])
+                            } catch {}
+                        })
+                    
+                    }
+                    if (label.length - 1 == i) {
+                        if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) {
+                            $.ajax({
+                                url: "/GetColor",
+                                method: "post",
+                                data : {
+                                    image: JSON.stringify(imgs),
+                                    hmin: humidity.getValue()[0],
+                                    hmax : humidity.getValue()[1],
+                                    color: '{"blue":'+disater_modal_blue.getValue()+', "green":'+disater_modal_green.getValue()+', "red":'+disater_modal_red.getValue()+'}',
+                                    crop: crop,
+                                    id: get_res_id,
+                                },
+                                success: function(data) {
+                                    var temp = (JSON.parse(data.replaceAll("'", '"')));
+                                    $.each(temp, (ind, img) => {
+                                        $("#" + key + ids[ind][0] + "_" + ids[ind][1] + "_" + ids[ind][2]).attr("src", "images/" + img);
+                                        $("#" + key + ids[ind][0] + "_" + ids[ind][1] + "_" + ids[ind][2]).attr("onclick", `ShowImage('images/` + img + `', '` + ids[ind][0] + "_" + ids[ind][1] + `_RESULT');`);
+                                        $("#" + key + ids[ind][0] + "_" + ids[ind][1] + "_" + ids[ind][2]).css("display", "");
+                                        if (temp.length - 1 == ind) $("#image_button").attr("disabled", false);
+                                    }) 
+                                }
+                            })
+                        } else {
+                            $.ajax({
+                                url: "/GetColor",
+                                method: "post",
+                                data : {
+                                    image: JSON.stringify(imgs),
+                                    hmin: humidity.getValue()[0],
+                                    hmax : humidity.getValue()[1],
+                                    color: '{"blue":'+disater_modal_blue.getValue()+', "green":'+disater_modal_green.getValue()+', "red":'+disater_modal_red.getValue()+'}',
+                                    crop: crop,
+                                    id: get_res_id,
+                                },
+                                success: function(data) {
+                                    var temp = (JSON.parse(data.replaceAll("'", '"')));
+                                    $.each(temp, (ind, img) => {
+                                        $("#" + key + ids[ind][0] + "_" + angle[slider.getValue()] + "_" + ids[ind][1]).attr("src", "images/" + img);
+                                        $("#" + key + ids[ind][0] + "_" + angle[slider.getValue()] + "_" + ids[ind][1]).attr("onclick", `ShowImage('images/` + img + `', '` + ids[ind][0] + "_" + angle[slider.getValue()] + `_RESULT');`);
+                                        $("#" + key + ids[ind][0] + "_" + angle[slider.getValue()] + "_" + ids[ind][1]).css("display", "");
+                                        if (temp.length - 1 == ind) $("#image_button").attr("disabled", false);
+                                    })
+                                }
+                            })
+                        }
+                    }
+
+                })
+            }
+
+
+            // 이미지 테이블 생성 및 모달 생성
+            function printImage(v, v2, v3, path, wid, hei, bool) {
+                var html = "";
+                if (path[v][v2][v3] != undefined) {
+                    var path = path[v][v2][v3].split("/mnt/hdd2/CropDisaster")[1]
+                    var resize_file = ($(':radio[name="radio_btn_ROI"]:checked').val() == 1 ? path.split(".")[0] + "_crop.png" : path.split(".")[0] + "_buf.png")
+                    var templabel = path.split("/")[path.split("/").length - 1].split(" ")[0];
+                    var id = v2 + "_" + v + "_" + templabel.split("_")[templabel.split("_").length - 1]
+                    html = `<div id ="div_` + bool + "_" + id + `" onclick="ShowImage(\'http://phenome.iptime.org:23000/users` + path + `\',\'` + v2 + "_" + v + `\');" style="display: flex; flex-direction: column; align-items: center; float: left">` +
+                        `<label style="margin-bottom: 0px; font-size: 15px"></label>
+                        <img src="http://phenome.iptime.org:23000/users` + resize_file + `"width=` + wid + `px; height=` + hei + `px>
+                        <label style="margin-bottom: 0px; font-size: 15px">` + templabel.split("_")[templabel.split("_").length - 1] + `</label>
+                        <label id="disater_` + bool + "_" + id + `" style="margin-bottom: 0px; font-size: 15px; white-space: nowrap;"></label>`
+
+                    if (bool == true) html += `</div><img id="result_` + id + `" src="" onclick="" width=` + wid + `px; height=` + hei + `px; style="display: none;">`;
+                    else html += `</div><img id="control_` + id + `" src="" onclick="" width=` + wid + `px; height=` + hei + `px; style="display: none;">`;
+                } else html = `<div style="display: flex; flex-direction: column; align-items: center;"><img src="" width="90px";></div>`
+                
+                return html;
+            }
+            function getImage(id, path, label, angle, slider, date) {
+                if (id == 'imgTable') var txt = "실험구"
+                else var txt = "대조구"
+                $('#' + id).html("");
+
+                var html = `<thead><tr><th>` + txt + `</th>`;
+                if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) {  
+                    $.each(Object.keys(path), (i2, v2) => { html += `<th style="text-align: center;">` + v2 + `</th>`; }) 
+                    slider.options.max = date.length - 1;
+                } else {
+                    html += `<th style="text-align: center;">` + angle[slider.getValue()] + `</th>`;
+                    slider.options.max = angle.length - 1;
+                }
+
+                html += `</tr></thead><tbody id="table_body_` + id + `"></tbody>`
+                $('#' + id).append(html);
+
+                $.each(label, (i2, v2) => {
+                    if (groupKey == 0) html = `<tr><td style="vertical-align: inherit; font-weight: bold; font-size: 14px;">` + v2 + `</td>`;
+                    else {
+                        $.each(Object.keys(labelGroup), (index, val) => {
+                            if (labelGroup[val].indexOf(v2) != -1) {
+                                html = `<tr><td style="vertical-align: inherit; font-weight: bold; font-size: 14px;">` + val + "_" + v2 +`</td>`;
+                                return false;
+                            }
+                        })
+                    }
+                    if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) {
+                        $.each(angle, (i3, v3) => {
+                            var imghtml = printImage(v3, v2, slider.getValue(), path, 100, 150, id == 'imgTable');     
+                            html += `<td style="padding-top: 3px; padding-bottom: 3px; padding-left: 3px; padding-right: 3px;">` + imghtml + `</td>`;
+                            if (angle.length - 1 == i3) {                 
+                                html += '</tr>'
+                                $("#table_body_" + id).append(html);
+                            }
+                        })
+                    } else {
+                        try {
+                            html += `<td style="display: flex; padding-top: 3px; padding-bottom: 3px; padding-left: 3px; padding-right: 3px;">`
+                            $.each(path[angle[slider.getValue()]][v2], (i3, v3) => {    
+                                var imghtml = printImage(angle[slider.getValue()], v2, i3, path, 100, 150, id == 'imgTable');     
+                                html += imghtml;
+                                if (path[angle[slider.getValue()]][v2].length - 1 == i3) {
+                                    html += `</td></tr>`;
+                                    $("#table_body_" + id).append(html);
+                                }
+                            })
+                        } catch {}
+                    }
+                })
+                getDisasterLabel(labelCheck, angleCheck, imgPath, mySlider, id == 'imgTable');
+                getDisasterLabel(controlLabel, controlAngle, controlPath, control_slider, id == 'imgTable');
+            }
+            function updateImage(element) {
+                if (element.checked) {
+                    $.each(angleCheck, (i, v) => { 
+                        $.each(labelCheck, (i2, v2) => { 
+                            $.each(datas, function(ind, val) {
+                                if (val.angle == v && val.label == v2 && imgDate.indexOf(val['time'].split("T")[0]) == -1) {
+                                    imgDate.push(val['time'].split("T")[0]);
+                                    if (dateAll.indexOf(val['time'].split("T")[0]) == -1) dateAll.push(val['time'].split("T")[0]);
+                                }
+                            }) 
+                        }) 
+                    })
+                    $.each(angleCheck, (i, v) => {
+                        imgPath[v] = {};
+                        $.each(labelCheck, (i2, v2) => {
+                            var path = [];
+                            imgPath[v][v2] = [];
+                            $.each(datas, function(ind, val) { if (val.angle == v && val.label == v2) path.push(val.img_path); })
+                            if (path.length == 0) imgPath[v][v2].push(undefined);
+                            else {
+                                $.each(imgDate, (i3, v3) => {
+                                    try{
+                                        var temp = path[0].split("/")[path[0].split("/").length - 1].split(" ")[0];
+                                        if (temp.split("_")[temp.split("_").length - 1] == v3 && imgPath[v][v2].indexOf(path[0]) == -1) imgPath[v][v2].push(path.shift());
+                                        else imgPath[v][v2].push(undefined);
+                                    } catch {}
+                                    
+                                })
+                            }
+                        })  
+                    })
+                } else {
+                    if (groupKey == 0) {
+                        if (element.name == "labelBox") {
+                            $.each(Object.keys(imgPath), (i, v) => { 
+                                $.each(Object.keys(imgPath[v]), (i2, v2) => { if (v2 == element.id) delete imgPath[v][v2]; })
+                            })
+                        } else $.each(Object.keys(imgPath), (i, v) => { if (v == element.id) delete imgPath[v]; })
+                        if (element.name == "labelBox" && labelCheck.indexOf(element.id) != -1) labelCheck.splice(labelCheck.indexOf(element.id), 1);
+                        else if (element.name == "angleBox" && angleCheck.indexOf(element.id) != -1) angleCheck.splice(angleCheck.indexOf(element.id), 1);
+                    }
+                    else {
+                        if (element.name == "labelBox") {
+                            $.each(Object.keys(imgPath), (i, v) => { 
+                                $.each(Object.keys(imgPath[v]), (i2, v2) => { 
+                                    $.each(labelGroup[element.id], (i3, v3) => {
+                                        if (v2 == v3) delete imgPath[v][v2]; 
+                                    })
+                                })
+                            })
+                        } else $.each(Object.keys(imgPath), (i, v) => { 
+                            $.each(labelGroup[element.id], (i2, v2) => { if (v == v2) delete imgPath[v]; })
+                        })
+                        if (element.name == "labelBox") {
+                            $.each(labelGroup[element.id], (i2, v2) => {
+                                if (labelCheck.indexOf(v2) != -1) labelCheck.splice(labelCheck.indexOf(v2), 1);
+                            })
+                        }
+                        else if (element.name == "angleBox" && angleCheck.indexOf(element.id) != -1) angleCheck.splice(angleCheck.indexOf(element.id), 1);
+                    }
+                    modifyimageDate("img");
+                }
+                getImage("imgTable", imgPath, labelCheck, angleCheck, mySlider, imgDate);
+            }
+            function updateControlImage(element) {
+                if (element.checked) {
+                    $.each(controlAngle, (i, v) => { 
+                        $.each(controlLabel, (i2, v2) => { 
+                            $.each(datas, function(ind, val) {
+                                if (val.angle == v && val.label == v2 && controlImgDate.indexOf(val['time'].split("T")[0]) == -1) {
+                                    controlImgDate.push(val['time'].split("T")[0]);
+                                    if (dateAll.indexOf(val['time'].split("T")[0]) == -1) dateAll.push(val['time'].split("T")[0]);
+                                }
+                            }) 
+                        }) 
+                    })
+                    $.each(controlAngle, (i, v) => {
+                        controlPath[v] = {};
+                        $.each(controlLabel, (i2, v2) => {
+                            var path = [];
+                            controlPath[v][v2] = [];
+                            $.each(datas, function(ind, val) { if (val.angle == v && val.label == v2) path.push(val.img_path); })
+                            if (path.length == 0) controlPath[v][v2].push(undefined);
+                            else {
+                                $.each(controlImgDate, (i3, v3) => {
+                                    try{
+                                    var temp = path[0].split("/")[path[0].split("/").length - 1].split(" ")[0];
+                                    if (temp.split("_")[temp.split("_").length - 1] == v3 && controlPath[v][v2].indexOf(path[0]) == -1) controlPath[v][v2].push(path.shift());
+                                    else controlPath[v][v2].push(undefined);
+                                    } catch{}
+                                })
+                            }
+                        })  
+                    })
+                } else {
+                    if (groupKey == 0) {
+                        if (element.name == "control_labelBox") {
+                            $.each(Object.keys(controlPath), (i, v) => { 
+                                $.each(Object.keys(controlPath[v]), (i2, v2) => { if (v2 == element.id.split("control_")[1]) delete controlPath[v][v2]; })
+                            })
+                        } else $.each(Object.keys(controlPath), (i, v) => { if (v == element.id.split("control_")[1]) delete controlPath[v]; })
+                        if (element.name == "control_labelBox" && controlLabel.indexOf(element.id.split("control_")[1]) != -1) controlLabel.splice(controlLabel.indexOf(element.id.split("control_")[1]), 1);
+                        else if (element.name == "control_angleBox" && controlAngle.indexOf(element.id.split("control_")[1]) != -1) controlAngle.splice(controlAngle.indexOf(element.id.split("control_")[1]), 1);
+                    } 
+                    else {
+                        if (element.name == "control_labelBox") {
+                            $.each(Object.keys(controlPath), (i, v) => { 
+                                $.each(Object.keys(controlPath[v]), (i2, v2) => { 
+                                    $.each(labelGroup[element.id.split("control_")[1]], (i3, v3) => {
+                                        if (v2 == v3) delete controlPath[v][v2]; 
+                                    })
+                                })
+                            })
+                        } else $.each(Object.keys(controlPath), (i, v) => { 
+                            $.each(labelGroup[element.id.split("control_")[1]], (i2, v2) => { if (v == v2) delete controlPath[v]; })
+                        })
+                        if (element.name == "control_labelBox") {
+                            $.each(labelGroup[element.id.split("control_")[1]], (i2, v2) => {
+                                if (controlLabel.indexOf(v2) != -1) controlLabel.splice(controlLabel.indexOf(v2), 1);
+                            })
+                        }
+                        else if (element.name == "control_angleBox" && controlAngle.indexOf(element.id.split("control_")[1]) != -1) controlAngle.splice(controlAngle.indexOf(element.id.split("control_")[1]), 1);
+                    }
+                    modifyimageDate("control");
+                }
+                getImage("controlTable", controlPath, controlLabel, controlAngle, control_slider, controlImgDate);
+            }
+            function modifyimageDate(key, path) {
+                dateAll = []
+                
+                if (key == 'control') controlImgDate = [];
+                if (key == 'img') imgDate = []; 
+                $.each(Object.keys(controlPath), (i, v) => { 
+                    $.each(Object.keys(controlPath[v]), (i2, v2) => { 
+                        $.each(datas, function(ind, val) {
+                            if (val.angle == v && val.label == v2) {
+                                if (key == "control" && controlImgDate.indexOf(val['time'].split("T")[0]) == -1) controlImgDate.push(val['time'].split("T")[0]);
+                                if (dateAll.indexOf(val['time'].split("T")[0]) == -1) dateAll.push(val['time'].split("T")[0]);
+                            }
+                        }) 
+                    }) 
+                })
+                $.each(Object.keys(imgPath), (i, v) => { 
+                    $.each(Object.keys(imgPath[v]), (i2, v2) => { 
+                        $.each(datas, function(ind, val) {
+                            if (val.angle == v && val.label == v2) {
+                                if (key == "img" && imgDate.indexOf(val['time'].split("T")[0]) == -1) imgDate.push(val['time'].split("T")[0]);
+                                if (dateAll.indexOf(val['time'].split("T")[0]) == -1) dateAll.push(val['time'].split("T")[0]);
+                            }
+                        }) 
+                    }) 
+                })
+                dateAll.sort();
+            }
+
+            // 차트 데이터 생성 및 에러바 생성
+            function updateErrorBars(id, label, ctrlLabel) {
+                chart[id + "_average"].config.data.datasets = [];
+
+                $.each(label, (ind, val) => {
+                    var avg = [], stddev = {};
+                    var normalAreaAvg = [], normalAreaStddev = {};
+
+                    $.each(chart[id].config.data.labels, (i, v) => {
+                        var data = [], normalData = [];
+                        stddev[v] = {};
+                        normalAreaStddev[v] = {};
+                        
+                        $.each(chart[id].config.data.datasets, (i2, v2) => {
+                            if (id == 'color') {
+                                if (v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 2] == "실험구" 
+                                && v2.label.split("_")[v2.label.split("_").length - 1] == "스트레스면적" && v2.data[i] != undefined) data.push(v2.data[i]);
+                                else if (v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 2] == "실험구" 
+                                && v2.label.split("_")[v2.label.split("_").length - 1] == "정상면적" && v2.data[i] != undefined) normalData.push(v2.data[i]);
+                                if (chart[id].config.data.datasets.length - 1 == i2) {
+                                    avg.push(d3.mean(data));
+                                    normalAreaAvg.push(d3.mean(normalData));
+                                    if (data.length > 1) {
+                                        stddev[v]["plus"] = d3.deviation(data);
+                                        stddev[v]["minus"] = -d3.deviation(data);
+                                        normalAreaStddev[v]["plus"] = d3.deviation(normalData);
+                                        normalAreaStddev[v]["minus"] = -d3.deviation(normalData);
+                                    }
+                                }
+                            } else {
+                                if (v2.data[i] != undefined && v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 1] == "실험구") data.push(v2.data[i]);
+                                if (chart[id].config.data.datasets.length - 1 == i2) {
+                                    avg.push(d3.mean(data));
+                                    if (data.length > 1) {
+                                        stddev[v]["plus"] = d3.deviation(data);
+                                        stddev[v]["minus"] = -d3.deviation(data);
+                                    }
+                                }
+                            }
+                        })
+                        if (chart[id].config.data.labels.length - 1 == i) {
+                            var hsl = "hsl(" + labelColor[val + "_실험구"].split("_")[0] + ", " + labelColor[val + "_실험구"].split("_")[1] + "%, 50%)"
+                            if (id == 'color') {
+                                var newDatasetDisater = {
+                                    label: val + "_실험구_스트레스면적_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: avg,
+                                    fill: false,
+                                    strokeColor: hsl,
+                                    pointBackgroundColor: "rgb(255, 0, 0)",
+                                    tension: 0,
+                                    errorBars: stddev,
+                                }; chart[id + "_average"].config.data.datasets.push(newDatasetDisater);
+                                var newDatasetNormal = {
+                                    label: val + "_실험구_정상면적_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: normalAreaAvg,
+                                    fill: false,
+                                    strokeColor: hsl,
+                                    pointBackgroundColor: "rgb(0, 128, 0)",
+                                    tension: 0,
+                                    errorBars: normalAreaStddev,
+                                }; chart[id + "_average"].config.data.datasets.push(newDatasetNormal);
+                            } else {
+                                var newDataset = {
+                                    label: val + "_실험구_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: avg,
+                                    fill: false,
+                                    tension: 0,
+                                    errorBars: stddev,
+                                }; chart[id + "_average"].config.data.datasets.push(newDataset);
+                            }
+                            chart[id + "_average"].config.data.labels = chart[id].config.data.labels;
+                        }
+                    })
+                })
+                $.each(ctrlLabel, (ind, val) => {
+                    var avg = [], stddev = {};
+                    var normalAreaAvg = [], normalAreaStddev = {};
+
+                    $.each(chart[id].config.data.labels, (i, v) => {
+                        var data = [], normalData = [];
+                        stddev[v] = {};
+                        normalAreaStddev[v] = {};
+
+                        $.each(chart[id].config.data.datasets, (i2, v2) => {
+                            if (id == 'color') {
+                                if (v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 2] == "대조구" 
+                                && v2.label.split("_")[v2.label.split("_").length - 1] == "스트레스면적" && v2.data[i] != undefined) data.push(v2.data[i]);
+                                else if (v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 2] == "대조구" 
+                                && v2.label.split("_")[v2.label.split("_").length - 1] == "정상면적" && v2.data[i] != undefined) normalData.push(v2.data[i]);
+                                if (chart[id].config.data.datasets.length - 1 == i2) {
+                                    avg.push(d3.mean(data));
+                                    normalAreaAvg.push(d3.mean(normalData));
+                                    if (data.length > 1) {
+                                        stddev[v]["plus"] = d3.deviation(data);
+                                        stddev[v]["minus"] = -d3.deviation(data);
+                                        normalAreaStddev[v]["plus"] = d3.deviation(normalData);
+                                        normalAreaStddev[v]["minus"] = -d3.deviation(normalData);
+                                    }
+                                }
+                            } else {
+                                if (v2.data[i] != undefined && v2.label.split("VIS")[0] == (val + "_") && v2.label.split("_")[v2.label.split("_").length - 1] == "대조구") data.push(v2.data[i]);
+                                if (chart[id].config.data.datasets.length - 1 == i2) {
+                                    avg.push(d3.mean(data));
+                                    if (data.length > 1) {
+                                        stddev[v]["plus"] = d3.deviation(data);
+                                        stddev[v]["minus"] = -d3.deviation(data);
+                                    }
+                                }
+                            }
+                        })
+                        if (chart[id].config.data.labels.length - 1 == i) {
+                            var hsl = "hsl(" + labelColor[val + "_대조구"].split("_")[0] + ", " + labelColor[val + "_대조구"].split("_")[1] + "%, 50%)"
+                            if (id == 'color') {
+                                var newDatasetDisater = {
+                                    label: val + "_대조구_스트레스면적_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: avg,
+                                    fill: false,
+                                    strokeColor: hsl,
+                                    pointBackgroundColor: "rgb(255, 0, 0)",
+                                    tension: 0,
+                                    errorBars: stddev,
+                                }; chart[id + "_average"].config.data.datasets.push(newDatasetDisater);
+                                var newDatasetNormal = {
+                                    label: val + "_대조구_정상면적_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: normalAreaAvg,
+                                    fill: false,
+                                    strokeColor: hsl,
+                                    pointBackgroundColor: "rgb(0, 128, 0)",
+                                    tension: 0,
+                                    errorBars: normalAreaStddev,
+                                }; chart[id + "_average"].config.data.datasets.push(newDatasetNormal);
+                            } else {
+                                var newDataset = {
+                                    label: val + "_대조구_average",
+                                    backgroundColor: hsl,
+                                    borderColor: hsl,
+                                    data: avg,
+                                    fill: false,
+                                    tension: 0,
+                                    errorBars: stddev,
+                                }
+                                chart[id + "_average"].config.data.datasets.push(newDataset);
+                            }
+                            chart[id + "_average"].config.data.labels = chart[id].config.data.labels;
+                        }
+                    })
+                })
+                chart[id + "_average"].update();
+            }
+            // 차트 DAS 라벨 업데이트
+            function updateLabel(callback) {
+                var temp = []
+
+                $.each(dateAll, (cnt, date) => { 
+                    var txt = ""
+                    if (annolist.length != 0) {
+                        $.each(annolist, (annoIdx, aData) => { 
+                            var name = aData.split("_")[1].split("-")[0];
+                            var time = (new Date(date) - new Date(aData.split("_")[0])) / (1000 * 3600 * 24);
+                            if (aData.split("-")[aData.split("-").length - 1] == "종료" && date > aData.split("_")[0]) txt = date + ";" + name + "회복 "+ (time) + " 일차 ";
+                            else if (aData.split("-")[aData.split("-").length - 1] == "시작" && date >= aData.split("_")[0]) txt = date + ";" + name + (time + 1) + " 일차 ";
+                        })
+                    } if (annolist.length == 0 || txt == '') txt = date + ";정상생육 " + (cnt + 1) + "일차"
+                    temp.push(txt); 
+                })
+
+                callback(temp);
+            }
+            function SelectData(angle, label, key, callback) {
+                var data = []
+                var date = []
+                var timetmp = []
+
+                $.each(datas, function(ind, val) {
+                    if (val['angle'] == angle && val['label'] == label) {
+                        if (timetmp.indexOf(val['time']) == -1) timetmp.push(val['time']);
+                    }
+                })
+                $.each(datas, function(ind, val) {
+                    if (val['angle'] == angle && val['label'] == label) {
+                        var index = timetmp.indexOf(val['time']);
+                        if (index != -1) data[index] = val["dt" + Attri.findIndex((v, i) => { return v.comment == key })];
+                        if (date.indexOf(val['time']) == -1) date.push(val['time'])
+                    }
+                })
+                callback(data, date)
+            }
+            function SelectDataGroup(angle, label, key, callback) {
+                var data = []
+                var date = []
+                var timetmp = []
+
+                $.each(datas, function(ind, val) {
+                    $.each(labelGroup[label], (i, v) => {
+                        if (val['angle'] == angle && val['label'] == v) {
+                            if (timetmp.indexOf(val['time'].split("T")[0]) == -1) timetmp.push(val['time'].split("T")[0]);
+                        }
+                        if (labelGroup[label].length - 1 == i) timetmp.sort();
+                    })
+                })
+                $.each(datas, function(ind, val) {
+                    $.each(labelGroup[label], (i, v) => {
+                        if (val['angle'] == angle && val['label'] == v) {
+                            var index = timetmp.indexOf(val['time'].split("T")[0]);
+                            if (index != -1) {
+                                if (data[index] == undefined) data[index] = 0;
+                                data[index] += val["dt" + Attri.findIndex((v2, i2) => { return v2.comment == key })];
+                            }
+                            if (date.indexOf(val['time']) == -1) date.push(val['time'])
+                        }
+                    })
+                    if (datas.length - 1 == ind) {
+                        $.each(data, (i2, v2) => { data[i2] = (v2 / 3); })
+                    }
+                })
+                
+                callback(data, date)
+            }
+
+            function updateChart(element, id, key) {
+                if (element.checked) {
+                    chart[id].config.data.labels = [];
+                    chart[id].config.data.datasets = [];
+                    if (groupKey == 0) {
+                        $.each(labelCheck, (i ,v) => {
+                            if (labelColor[v + "_실험구"] == undefined)  labelColor[v + "_실험구"] = Math.floor(Math.random() * 361) + "_" + Math.floor(Math.random() * 101);
+
+                            $.each(angleCheck, (i2, v2) => {
+                                var hslborder = "hsla(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                var hslbackground = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                
+                                SelectData(v2, v, id, function(data, date) {
+                                    var newDataset = {
+                                        label: v + "_" + v2 + "_실험구",
+                                        backgroundColor: hslbackground,
+                                        borderColor: hslborder,
+                                        data: data,
+                                        fill: false,
+                                        tension: 0,
+                                        errorBars: {}, 
+                                        borderWidth: 2,
+                                    }
+                                    chart[id].config.data.datasets.push(newDataset);
+                                })
+                                updateLabel(function(label) { chart[id].config.data.labels = label; })
+                            })
+                        })
+                        $.each(controlLabel, (i ,v) => {
+                            if (labelColor[v + "_대조구"] == undefined)  labelColor[v + "_대조구"] = Math.floor(Math.random() * 361) + "_" + Math.floor(Math.random() * 101);
+
+                            $.each(controlAngle, (i2, v2) => {
+                                var hslborder = "hsla(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                var hslbackground = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                
+                                SelectData(v2, v, id, function(data, date) {
+                                    var newDataset = {
+                                        label: v + "_" + v2 + "_대조구",
+                                        backgroundColor: hslbackground,
+                                        borderColor: hslborder,
+                                        data: data,
+                                        fill: false,
+                                        tension: 0,
+                                        errorBars: {}, 
+                                        borderWidth: 2,
+                                    }
+                                    chart[id].config.data.datasets.push(newDataset);
+                                })
+                                updateLabel(function(label) { chart[id].config.data.labels = label; })
+                            })
+                        })
+                    } else {
+                        $.each(checkGroupLabel, (i ,v) => {
+                            if (labelColor[v + "_실험구"] == undefined)  labelColor[v + "_실험구"] = Math.floor(Math.random() * 361) + "_" + Math.floor(Math.random() * 101);
+
+                            $.each(angleCheck, (i2, v2) => {
+                                var hslborder = "hsla(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                var hslbackground = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                
+                                SelectDataGroup(v2, v, id, function(data, date) {
+                                    var newDataset = {
+                                        label: v + "_" + v2 + "_실험구",
+                                        backgroundColor: hslbackground,
+                                        borderColor: hslborder,
+                                        data: data,
+                                        fill: false,
+                                        tension: 0,
+                                        errorBars: {}, 
+                                        borderWidth: 2,
+                                    }
+                                    chart[id].config.data.datasets.push(newDataset);
+                                })
+                                updateLabel(function(label) { chart[id].config.data.labels = label; })
+                            })
+                        })
+                        $.each(controlGroupLabel, (i ,v) => {
+                            if (labelColor[v + "_대조구"] == undefined)  labelColor[v + "_대조구"] = Math.floor(Math.random() * 361) + "_" + Math.floor(Math.random() * 101);
+
+                            $.each(controlAngle, (i2, v2) => {
+                                var hslborder = "hsla(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                var hslbackground = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                
+                                SelectDataGroup(v2, v, id, function(data, date) {
+                                    var newDataset = {
+                                        label: v + "_" + v2 + "_대조구",
+                                        backgroundColor: hslbackground,
+                                        borderColor: hslborder,
+                                        data: data,
+                                        fill: false,
+                                        tension: 0,
+                                        errorBars: {}, 
+                                        borderWidth: 2,
+                                    }
+                                    chart[id].config.data.datasets.push(newDataset);
+                                })
+                                updateLabel(function(label) { chart[id].config.data.labels = label; })
+                            })
+                        })
+                    }
+                } else {
+                    do {
+                        var ind = chart[id].config.data.datasets
+                            .findIndex((v, i) => {
+                                if (element.name == "control_labelBox" && v.label.split("_")[5] == "대조구") return ("control_" + v.label.split("_")[0] + "_" + v.label.split("_")[1] + "_" + v.label.split("_")[2]) == element.id;
+                                else if (element.name == "labelBox"  && v.label.split("_")[5] == "실험구") return (v.label.split("_")[0] + "_" + v.label.split("_")[1] + "_" + v.label.split("_")[2]) == element.id;
+                                else if (element.name == "control_angleBox" && v.label.split("_")[5] == "대조구") return ("control_" + v.label.split("_")[3] + "_" + v.label.split("_")[4]) == element.id;
+                                else return (v.label.split("_")[3] + "_" + v.label.split("_")[4]) == element.id;
+                            })
+                        
+                        if (ind != -1) {
+                            chart[id].config.data.datasets.splice(ind, 1);
+                            chart[id].update();
+                        }
+                    } while (ind != -1);
+                    chart[id].config.data.labels = dateAll;
+                }
+                if (groupKey == 0) updateErrorBars(id, labelCheck, controlLabel);
+                else updateErrorBars(id, checkGroupLabel, controlGroupLabel);
+                chart[id].update();
+            }
+            function updateEnvirChart() {
+                if (dateAll.length != 0) {
+                    $.ajax({
+                        url: "/onloadEnvir",
+                        method: "post",
+                        data: {
+                            stdate: dateAll[0],
+                            eddate: dateAll[dateAll.length - 1] + " 23:59:59"
+                        },
+                        success: function(data) {
+                            envirData = data
+                            envirData = envirData.sort(function(a, b) { return new Date(a.time) - new Date(b.time); })
+
+                            var label = ["temperature °C", "MeansHD g/m3", "insolation J/cm²", "CO2 ppm"]
+                            chart["환경정보"].config.data.labels = [];
+                            chart["환경정보"].config.data.datasets = [];
+                            if (dateAll.length != 0) { 
+                                var envir = {};
+                                envir[0] = [];
+                                envir[1] = [];
+                                envir[2] = [];
+                                envir[3] = [];
+
+                                $.each(envirData, (i, v) => {
+                                    if (v.time.split(":")[1] == '00') {
+                                        envir[0].push({
+                                            x: v.time,
+                                            y: v.temp
+                                        })
+                                        envir[1].push({
+                                            x: v.time,
+                                            y: v.hum
+                                        })
+                                        envir[2].push({
+                                            x: v.time,
+                                            y: v.insol
+                                        })
+                                        envir[3].push({
+                                            x: v.time,
+                                            y: v.co2
+                                        })
+                                    }
+                                })
+                                var newDataset = [{
+                                    yAxisID: 'a',
+                                    label: label[0],
+                                    backgroundColor: "hsl(0, 0%, 0%)",
+                                    borderColor: "hsl(0, 0%, 0%)",
+                                    borderWidth: 2,
+                                    data: envir[0],
+                                    fill: false,
+                                    errorBars: {}
+                                }, {
+                                    yAxisID: 'a',
+                                    label: label[1],
+                                    backgroundColor: "hsl(50, 50%, 50%)",
+                                    borderColor: "hsl(50, 50%, 50%)",
+                                    borderWidth: 2,
+                                    data: envir[1],
+                                    fill: false,
+                                    errorBars: {}
+                                }, {
+                                    yAxisID: 'b',
+                                    label: label[2],
+                                    backgroundColor: "hsl(125, 50%, 50%)",
+                                    borderColor: "hsl(125, 50%, 50%)",
+                                    borderWidth: 2,
+                                    data: envir[2],
+                                    fill: false,
+                                    errorBars: {}
+                                }, {
+                                    yAxisID: 'b',
+                                    label: label[3],
+                                    backgroundColor: "hsl(180, 50%, 50%)",
+                                    borderColor: "hsl(180, 50%, 50%)",
+                                    borderWidth: 2,
+                                    data: envir[3],
+                                    fill: false,
+                                    errorBars: {}
+                                }, ]
+
+                                chart["환경정보"].config.data.datasets = newDataset;         
+                            }
+                            chart["환경정보"].update();
+                        }
+                    })
+                }
+            }
+            function updateColorChart() {
+                chart["color"].config.data.labels = [];
+                chart["color"].config.data.datasets = [];
+                chart["color"].options.elements.point.radius = 5;
+                chart["color_average"].options.elements.point.radius = 5;
+                
+                if (groupKey == 0) {
+                    $.each(labelCheck, (i, v) => {
+                        var disaAreaAvg = [], normalAreaAvg = [];
+                        var disaAreaStddev = {}, normalAreaStddev = {};
+
+                        $.each(angleCheck, (i2, v2) => {
+                            var disaArea = [], normalArea = [];
+                            $.each(imgPath[v2][v], (i3, v3) => {
+                                var index = colorData.findIndex((val, ind) => {
+                                    if (v3 != undefined) return val.val.name == v3.split("/")[v3.split("/").length - 1];
+                                    else return -1;
+                                })
+    
+                                if (index != -1) {
+                                    var dsum = 0;
+                                    for (var ind = humidity.getValue()[0]; ind <= humidity.getValue()[1]; ind++) {
+                                        dsum += Number(colorData[index].val[ind]);
+                                    }
+                                    disaArea.push(dsum * 100);
+                                    normalArea.push(100 - (dsum * 100));
+                                } else {
+                                    disaArea.push(0);
+                                    normalArea.push(0);
+                                }
+                                if (imgPath[v2][v].length - 1 == i3) {
+                                    var hsl = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                                    var newDatasetDisater = {
+                                        label: v + "_" + v2 + "_실험구_스트레스면적",
+                                        backgroundColor: hsl,
+                                        borderColor: hsl,
+                                        data: disaArea,
+                                        fill: false,
+                                        strokeColor: hsl,
+                                        pointBackgroundColor: "rgb(255, 0, 0)",
+                                        tension: 0,
+                                    }
+                                    var newDatasetNormal = {
+                                        label: v + "_" + v2 + "_실험구_정상면적",
+                                        backgroundColor: hsl,
+                                        borderColor: hsl,
+                                        data: normalArea,
+                                        fill: false,
+                                        strokeColor: hsl,
+                                        pointBackgroundColor: "rgb(0, 128, 0)",
+                                        tension: 0,
+                                    }
+                                    chart["color"].config.data.datasets.push(newDatasetDisater);
+                                    chart["color"].config.data.datasets.push(newDatasetNormal);
+                                }
+                            })
+                        })
+                        // 여기서 데이터 푸쉬
+                    })
+                    $.each(controlLabel, (i, v) => {
+                        $.each(controlAngle, (i2, v2) => {
+                            var disaArea = [];
+                            var normalArea = [];
+                            $.each(controlPath[v2][v], (i3, v3) => {
+                                var index = colorData.findIndex((val, ind) => {
+                                    if (v3 != undefined) return val.val.name == v3.split("/")[v3.split("/").length - 1];
+                                    else return -1;
+                                })
+                                if (index != -1) {
+                                    var dsum = 0;
+                                    for (var ind = humidity.getValue()[0]; ind <= humidity.getValue()[1]; ind++) {
+                                        dsum += Number(colorData[index].val[ind]);
+                                    }
+                                    disaArea.push(dsum * 100);
+                                    normalArea.push(100 - (dsum * 100));
+                                } else {
+                                    disaArea.push(0);
+                                    normalArea.push(0);
+                                }
+                            })
+                            var hsl = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                            var newDatasetDisater = {
+                                label: v + "_" + v2 + "_대조구_스트레스면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: disaArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(255, 0, 0)",
+                                tension: 0,
+                            }
+                            var newDatasetNormal = {
+                                label: v + "_" + v2 + "_대조구_정상면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: normalArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(0, 128, 0)",
+                                tension: 0,
+                            }
+                            chart["color"].config.data.datasets.push(newDatasetDisater);
+                            chart["color"].config.data.datasets.push(newDatasetNormal);
+                        })
+                    })
+                } else {
+                    $.each(checkGroupLabel, (i, v) => {
+                        $.each(angleCheck, (i2, v2) => {
+                            var disaSum = [];
+                            var disaArea = [];
+                            var normalSum = [];
+                            var normalArea = [];
+
+                            $.each(labelGroup[v], (idx, val2) => {
+                                $.each(imgPath[v2][val2], (i3, v3) => {
+                                    var index = colorData.findIndex((val, ind) => {
+                                        if (v3 != undefined) return val.val.name == v3.split("/")[v3.split("/").length - 1];
+                                        else return -1;
+                                    })
+        
+                                    if (index != -1) {
+                                        var dsum = 0;
+                                        for (var ind = humidity.getValue()[0]; ind <= humidity.getValue()[1]; ind++) {
+                                            dsum += Number(colorData[index].val[ind]);
+                                        }
+                                        if (disaSum[i3] == undefined) {
+                                            disaSum[i3] = 0;
+                                            normalSum[i3] = 0;
+                                        }
+                                        disaSum[i3] += dsum * 100;
+                                        normalSum[i3] += 100 - (dsum * 100);
+                                    } else {
+                                        if (disaSum[i3] == undefined) {
+                                            disaSum[i3] = 0;
+                                            normalSum[i3] = 0;
+                                        }
+                                        disaSum[i3] += 0;
+                                        normalSum[i3] += 0;
+                                    }
+                                })
+                                if (labelGroup[v].length - 1 == idx) {
+                                    $.each(disaSum, (temp, tdata) => {
+                                        disaArea.push(disaSum[temp] / (idx + 1));
+                                        normalArea.push(normalSum[temp] / (idx + 1));
+                                    })
+                                }
+                            })
+                            var hsl = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                            var newDatasetDisater = {
+                                label: v + "_" + v2 + "_실험구_스트레스면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: disaArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(255, 0, 0)",
+                                tension: 0,
+                            }
+                            var newDatasetNormal = {
+                                label: v + "_" + v2 + "_실험구_정상면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: normalArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(0, 128, 0)",
+                                tension: 0,
+                            }
+                            chart["color"].config.data.datasets.push(newDatasetDisater);
+                            chart["color"].config.data.datasets.push(newDatasetNormal);
+                        })
+                    })
+                    $.each(controlGroupLabel, (i, v) => {
+                        $.each(controlAngle, (i2, v2) => {
+                            var disaSum = [];
+                            var disaArea = [];
+                            var normalSum = [];
+                            var normalArea = [];
+
+                            $.each(labelGroup[v], (idx, val2) => {
+                                $.each(controlPath[v2][val2], (i3, v3) => {
+                                    var index = colorData.findIndex((val, ind) => {
+                                        if (v3 != undefined) return val.val.name == v3.split("/")[v3.split("/").length - 1];
+                                        else return -1;
+                                    })
+        
+                                    if (index != -1) {
+                                        var dsum = 0;
+                                        for (var ind = humidity.getValue()[0]; ind <= humidity.getValue()[1]; ind++) {
+                                            dsum += Number(colorData[index].val[ind]);
+                                        }
+                                        if (disaSum[i3] == undefined) {
+                                            disaSum[i3] = 0;
+                                            normalSum[i3] = 0;
+                                        }
+                                        disaSum[i3] += dsum * 100;
+                                        normalSum[i3] += 100 - (dsum * 100);
+                                    } else {
+                                        if (disaSum[i3] == undefined) {
+                                            disaSum[i3] = 0;
+                                            normalSum[i3] = 0;
+                                        }
+                                        disaSum[i3] += 0;
+                                        normalSum[i3] += 0;
+                                    }
+                                })
+                                if (labelGroup[v].length - 1 == idx) {
+                                    $.each(disaSum, (temp, tdata) => {
+                                        disaArea.push(disaSum[temp] / (idx + 1));
+                                        normalArea.push(normalSum[temp] / (idx + 1));
+                                    })
+                                }
+                            })
+                            var hsl = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, " + (((Number(v2.split("SV")[1]) / 18) * 3.5) + 20) + "%)"
+                            var newDatasetDisater = {
+                                label: v + "_" + v2 + "_대조구_스트레스면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: disaArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(255, 0, 0)",
+                                tension: 0,
+                            }
+                            var newDatasetNormal = {
+                                label: v + "_" + v2 + "_대조구_정상면적",
+                                backgroundColor: hsl,
+                                borderColor: hsl,
+                                data: normalArea,
+                                fill: false,
+                                strokeColor: hsl,
+                                pointBackgroundColor: "rgb(0, 128, 0)",
+                                tension: 0,
+                            }
+                            chart["color"].config.data.datasets.push(newDatasetDisater);
+                            chart["color"].config.data.datasets.push(newDatasetNormal);
+                        })
+                    })
+                }
+                updateLabel(function(label) { chart["color"].config.data.labels = label; })
+                if (groupKey == 0) updateErrorBars("color", labelCheck, controlLabel);
+                else updateErrorBars("color", checkGroupLabel, controlGroupLabel);
+                chart["color"].update();
+
+                // updateErrorBars("color");
+            }
+            function updateWaterChart(label, ctrlLabel) {
+                chart["물사용량"].config.data.labels = [];
+                chart["물사용량"].config.data.datasets = [];
+                if (dateAll.length != 0) { 
+                    var waterDatas = {};
+                    if (groupKey == 0) {
+                        $.each(controlLabel, (i ,v) => {
+                            var sum = 0;
+                            waterDatas[v] = []
+                            // waterDatas[v + "_after"] = []
+                            // waterDatas[v + "_amount"] = []
+                            $.each(waterData, (i2, v2) => {
+                                if (v2.label == v && dateAll[0] <= v2.time.split("T")[0] && v2.time.split("T")[0] <= dateAll[dateAll.length - 1]) {
+                                    sum += v2.amount;
+                                    waterDatas[v].push({
+                                        x: v2.time,
+                                        y: sum
+                                    })
+                                    // waterDatas[v + "_after"].push({
+                                    //     x: v2.time,
+                                    //     y: v2.after
+                                    // })
+                                    // waterDatas[v + "_amount"].push({
+                                    //     x: v2.time,
+                                    //     y: v2.amount
+                                    // })
+                                }
+                                if (waterData.length - 1 == i2) {
+                                    var hsv = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, "
+                                    var newDataset = {
+                                        yAxisID: 'a',
+                                        label: v + "_대조구",
+                                        backgroundColor: hsv + " 50%)",
+                                        borderColor: hsv + " 50%)",
+                                        borderWidth: 2,
+                                        data: waterDatas[v],
+                                        fill: false
+                                    }
+                                    chart["물사용량"].config.data.datasets.push(newDataset);
+                                    // var newDataset = {
+                                    //     type: 'line',
+                                    //     yAxisID: 'b',
+                                    //     label: v + "_after_대조구",
+                                    //     backgroundColor: hsv + " 40%)",
+                                    //     borderColor: hsv + " 40%)",
+                                    //     borderWidth: 2,
+                                    //     data: waterDatas[v + "_after"],
+                                    //     fill: false
+                                    // }
+                                    // chart["물사용량"].config.data.datasets.push(newDataset);         
+                                }
+                            })
+                        }) 
+                        $.each(labelCheck, (i ,v) => {
+                            var sum = 0;
+                            waterDatas[v] = []
+                            waterDatas[v + "_after"] = []
+                            waterDatas[v + "_amount"] = []
+                            $.each(waterData, (i2, v2) => {
+                                if (v2.label == v && dateAll[0] <= v2.time.split("T")[0] && v2.time.split("T")[0] <= dateAll[dateAll.length - 1]) {
+                                    sum += v2.amount;
+                                    waterDatas[v].push({
+                                        x: v2.time,
+                                        y: sum
+                                    })
+                                    // waterDatas[v + "_after"].push({
+                                    //     x: v2.time,
+                                    //     y: v2.after
+                                    // })
+                                    // waterDatas[v + "_amount"].push({
+                                    //     x: v2.time,
+                                    //     y: v2.amount
+                                    // })
+                                }
+                                if (waterData.length - 1 == i2) {
+                                    var hsv = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, "
+                                    var newDataset = {
+                                        yAxisID: 'a',
+                                        label: v + "_실험구",
+                                        backgroundColor: hsv + " 50%)",
+                                        borderColor: hsv + " 50%)",
+                                        borderWidth: 2,
+                                        data: waterDatas[v],
+                                        fill: false
+                                    }
+                                    chart["물사용량"].config.data.datasets.push(newDataset);         
+                                    // var newDataset = {
+                                    //     type: 'line',
+                                    //     yAxisID: 'b',
+                                    //     label: v + "_after_실험구",
+                                    //     backgroundColor: hsv + " 40%)",
+                                    //     borderColor: hsv + " 40%)",
+                                    //     borderWidth: 2,
+                                    //     data: waterDatas[v + "_after"],
+                                    //     fill: false
+                                    // }
+                                    // chart["물사용량"].config.data.datasets.push(newDataset);         
+                                        // {
+                                        //     type: 'line',
+                                        //     yAxisID: 'b',
+                                        //     label: v + "_amount_실험구",
+                                        //     backgroundColor: "hsl(100, 50%, 50%)",
+                                        //     borderColor: "hsl(100, 50%, 50%)",
+                                        //     borderWidth: 2,
+                                        //     data: waterDatas[v + "_amount"],
+                                        //     fill: false,
+                                        //     errorBars: {}
+                                        // }
+                                }
+                            })
+                        }) 
+                    } 
+                    else {
+                        $.each(controlGroupLabel, (idx, val) => {
+                            var waterDatas = {};
+                            var labeltime = [];
+                            var sum = [];
+                            waterDatas[val] = [];
+                            $.each(labelGroup[val], (i ,v) => {
+                                $.each(waterData, (i2, v2) => {
+                                    if (v2.label == v && dateAll[0] <= v2.time.split("T")[0] && v2.time.split("T")[0] <= dateAll[dateAll.length - 1]) {
+                                        if (sum[v2.time.split("T")[0]] == undefined) sum[v2.time.split("T")[0]] = 0;
+                                        sum[v2.time.split("T")[0]] += v2.amount;
+                                        if (labeltime.indexOf(v2.time.split("T")[0]) == -1) labeltime.push(v2.time.split("T")[0])
+                                    }
+                                })
+                                if (labelGroup[val].length - 1 == i) {
+                                    var temp = 0;
+                                    $.each(labeltime, (i3, v3) => {
+                                        temp += sum[v3] / (i + 1)
+                                        waterDatas[val].push({
+                                            x: v3,
+                                            y: temp
+                                        })
+                                        if (labeltime.length - 1 == i3) {
+                                            var hsv = "hsl(" + labelColor[val + "_대조구"].split("_")[0] + ", " + labelColor[val + "_대조구"].split("_")[1] + "%, "
+                                            var newDataset = {
+                                                yAxisID: 'a',
+                                                label: val + "_대조구",
+                                                backgroundColor: hsv + " 80%)",
+                                                borderColor: hsv + " 80%)",
+                                                borderWidth: 2,
+                                                data: waterDatas[val],
+                                                fill: false
+                                            }
+                                            chart["물사용량"].config.data.datasets.push(newDataset);
+                                        }
+                                    })
+                                }
+                            }) 
+                        })
+                        $.each(checkGroupLabel, (idx, val) => {
+                            var waterDatas = {};
+                            var labeltime = [];
+                            var sum = [];
+                            waterDatas[val] = [];
+
+                            $.each(labelGroup[val], (i, v) => {
+                                $.each(waterData, (i2, v2) => {
+                                    if (v2.label == v && dateAll[0] <= v2.time.split("T")[0] && v2.time.split("T")[0] <= dateAll[dateAll.length - 1]) {
+                                        if (sum[v2.time.split("T")[0]] == undefined) sum[v2.time.split("T")[0]] = 0;
+                                        sum[v2.time.split("T")[0]] += v2.amount;
+                                        if (labeltime.indexOf(v2.time.split("T")[0]) == -1) labeltime.push(v2.time.split("T")[0])
+                                    }
+                                })
+                                if (labelGroup[val].length - 1 == i) {
+                                    var temp = 0;
+                                    $.each(labeltime, (i3, v3) => {
+                                        temp += sum[v3] / (i + 1)
+                                        waterDatas[val].push({
+                                            x: v3,
+                                            y: temp
+                                        })
+                                        if (labeltime.length - 1 == i3) {
+                                            var hsv = "hsl(" + labelColor[val + "_실험구"].split("_")[0] + ", " + labelColor[val + "_실험구"].split("_")[1] + "%, "
+                                            var newDataset = {
+                                                yAxisID: 'a',
+                                                label: val + "_실험구",
+                                                backgroundColor: hsv + " 80%)",
+                                                borderColor: hsv + " 80%)",
+                                                borderWidth: 2,
+                                                data: waterDatas[val],
+                                                fill: false
+                                            }
+                                            chart["물사용량"].config.data.datasets.push(newDataset);
+                                        }
+                                    })
+                                }
+                            }) 
+                        })
+                    }
+                }
+                chart["물사용량"].update();
+            }
+
+
+
+            // 라벨, 앵글 체크박스 생성 및 이벤트 생성
+            function createFormControl(lbel, ang, key) {
+                if (key == 0) {
+                    $.each(lbel, (i, v) => {
+                        var html1 = `<label class="col-sm-4"><input type="checkbox" name="control_labelBox" id="control_` + v + `" onclick=""> ` + v + ` </label>` 
+                        var html2 = `<label class="col-sm-4"><input type="checkbox" name="labelBox" id="` + v + `"> ` + v + ` </label>` 
+                        $("#controlLabel").append(html1);
+                        $("#label").append(html2);
+                        
+                        $("#control_" + v).change(function(event) {
+                            if (controlLabel.indexOf(this.id.split("control_")[1]) == -1) controlLabel.push(this.id.split("control_")[1]);
+                            updateControlImage(this);
+                            $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                            updateEnvirChart();
+                            updateWaterChart();
+                        })
+                        $("#" + v).change(function(event) {
+                            if (labelCheck.indexOf(this.id) == -1) labelCheck.push(this.id);
+                            updateImage(this);
+                            $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                            updateEnvirChart();
+                            updateWaterChart();
+                        })
+                    })
+                } else {
+                    $.each(Object.keys(lbel), (i, v) => {
+                        var html1 = `<label class="col-sm-4"><input type="checkbox" name="control_labelBox" id="control_` + v + `" onclick=""> ` + v + ` </label>` 
+                        var html2 = `<label class="col-sm-4"><input type="checkbox" name="labelBox" id="` + v + `"> ` + v + ` </label>` 
+                        $("#controlLabel").append(html1);
+                        $("#label").append(html2);
+
+                        $("#control_" + v).change(function(event) {
+                            if (this.checked) controlGroupLabel.push(this.id.split("control_")[1]);
+                            else controlGroupLabel.splice(controlGroupLabel.indexOf(this.id.split("control_")[1]), 1);
+                            $.each(labelGroup[v], (i, v) => { if (controlLabel.indexOf(v) == -1) controlLabel.push(v); })
+                            updateControlImage(this);
+                            $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                            updateEnvirChart();
+                            updateWaterChart();
+                        })
+                        $("#" + v).change(function(event) {
+                            if (this.checked) checkGroupLabel.push(this.id);
+                            else checkGroupLabel.splice(checkGroupLabel.indexOf(this.id), 1);
+                            $.each(labelGroup[v], (i, v) => { if (labelCheck.indexOf(v) == -1) labelCheck.push(v); })
+                            updateImage(this);
+                            $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                            updateEnvirChart();
+                            updateWaterChart();
+                        })
+                    })
+
+                }
+
+                $.each(ang, (i, v) => {
+                    var html1 = `<label class="col-sm-4"><input type="checkbox" name="control_angleBox" id="control_` + v + `" onclick=""> ` + v + `° </label>` 
+                    var html2 = `<label class="col-sm-4"><input type="checkbox" name="angleBox" id="` + v + `"> ` + v + `° </label>` 
+                    $("#controlAngle").append(html1);
+                    $("#angle").append(html2);
+
+                    $("#control_" + v).change(function(event) {
+                        // $("#" + this.id.split("control_")[1]).trigger("click");
+                        if (controlAngle.indexOf(this.id.split("control_")[1]) == -1) controlAngle.push(this.id.split("control_")[1]);
+                        updateControlImage(this);
+                        $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                        updateEnvirChart();
+                        updateWaterChart();
+                    })
+                    $("#" + v).change(function(event) {
+                        // $("#control_" + this.id).trigger("click");
+                        if (angleCheck.indexOf(this.id) == -1) angleCheck.push(this.id);
+                        updateImage(this);
+                        $.each(Attri, (i, v) => { updateChart(this, v.comment); })
+                        updateEnvirChart();
+                        updateWaterChart();
+                    })
+                })
+            }
+
+
+            // 차트 카드 생성
+            function createCard(id, idx) {
+                var html = `<div class="card" id="card_` + id + `">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>` + id + 
+                            `</h3>
+                            <button id="export_chart + ` + id + `" class="btn btn-primary waves-effect waves-light" style="float: right; padding-bottom: 3px; padding-top: 3px;" onclick="downloadChart('` + id + `')">내보내기</button>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="chart" id="chart_` + id + `" style="position: relative; height: 400px;">
+                                <canvas id="chart_canvas_` + id + `" style="height: 40vh; width: 100%; overflow-x: scroll"></canvas>
+                            </div>
+                        </div>
+                    </div>`
+                $("#card_chart").append(html);
+            }
+
+
+            // 커스텀 생성, 차트 생성
+            const getOrCreateTooltip = (tooltipEl) => {
+                if (!tooltipEl) {
+                    tooltipEl = document.createElement('div');
+                    tooltipEl.style.background = 'rgba(0, 0, 0, 0.7)';
+                    tooltipEl.style.borderRadius = '3px';
+                    tooltipEl.style.color = 'white';
+                    tooltipEl.style.pointerEvents = 'none';
+                    tooltipEl.style.position = 'absolute';
+                    tooltipEl.style.transform = 'translate(-50%, 0)';
+                    tooltipEl.style.transition = 'all .1s ease';
+
+                    const table = document.createElement('table');
+                    table.style.margin = '0px';
+
+                    tooltipEl.appendChild(table);
+                }
+                return tooltipEl;
+            };
+            var customTooltips = function(tooltip) {
+                var tooltipEl = document.getElementById('chartjs-tooltip');
+                if (!tooltipEl) {
+                    tooltipEl = getOrCreateTooltip(tooltipEl);
+                    tooltipEl.id = 'chartjs-tooltip';
+                    tooltipEl.innerHTML = "<table></table>"
+                    document.body.appendChild(tooltipEl);
+                }
+                if (tooltip.opacity === 0) {
+                    tooltipEl.style.opacity = 0;
+                    return;
+                }
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltip.yAlign) {
+                    tooltipEl.classList.add(tooltip.yAlign);
+                } else {
+                    tooltipEl.classList.add('no-transform');
+                }
+                function getBody(bodyItem) {
+                    return bodyItem.lines;
+                }
+                if (tooltip.body) {
+                    var titleLines = tooltip.title || [];
+                    var bodyLines = tooltip.body.map(getBody);
+                    var innerHtml = '<thead >';
+                    titleLines.forEach(function(title) { innerHtml += '<tr><th>' + title + '</th></tr>'; });
+                    innerHtml += '</thead><tbody>';
+                    bodyLines.forEach(function(body, i) {
+                        var colors = tooltip.labelColors[i];
+                        var style = 'background:' + colors.backgroundColor;
+                        style += '; width : 15px'; 
+                        style += '; height : 15px'; 
+                        style += ';border: 1px solid white';
+                        style += '; margin-right : 5px'
+                        style += '; padding-right : 5px'
+                        style += '; display  : inline-block'; 
+                        var span = '<span style="' + style + '"></span>';
+                        innerHtml += '<tr><td>' + span + " " + body[0].split(":")[0] + ': <span style="color:rgb(255, 120, 120)">' + body[0].split(":")[1] + '</span></td></tr>';
+                        
+                    });
+                    innerHtml += '</tbody>';
+                    var tableRoot = tooltipEl.querySelector('table');
+                    tableRoot.innerHTML = innerHtml;
+                    
+                }
+                var position = this._chart.canvas.getBoundingClientRect();
+                tooltipEl.style.opacity = 1;
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.left = position.left + window.pageXOffset + tooltip.caretX + 'px';
+                tooltipEl.style.top = position.top + window.pageYOffset + tooltip.caretY + 'px';
+                tooltipEl.style.fontFamily = tooltip._bodyFontFamily;
+                tooltipEl.style.fontSize = tooltip.bodyFontSize + 'px';
+                tooltipEl.style.fontStyle = tooltip._bodyFontStyle;
+                tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                tooltipEl.style.pointerEvents = 'none';
+            };
+
+
+            function createChart(id) {
+                var ctx = document.getElementById("chart_canvas_" + id).getContext('2d');
+                chart[id] = new Chart(ctx, {
+                    type: 'line',
+                    data: ([]),
+                    options: {
+                        tooltips: {
+                            enabled: false,
+                            mode: "index",
+                            intersect: false,
+                            custom: customTooltips
+                        },
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        elements: {
+                            point: { radius: 2 },
+                        },
+                        responsive: true,
+                        maintainAspectRatio : false,
+                        responsiveAnimationDuration: 1000,
+                        scales: {
+                            xAxes: [{
+                                xAxisID: "x1",
+                                gridLines: { 
+                                    borderDash: [0, 1], 
+                                    zeroLineColor: "rgb(0, 0, 0)"
+                                },
+                                ticks: { callback: function(label) { return label.split(";")[0]; }}
+                            }, {
+                                xAxisID: "x2",
+                                gridLines: { display: false },
+                                ticks: { callback: function(label) { return label.split(";")[1]; }}
+                            }],
+                            yAxes: [{ 
+                                gridLines: { display: false }, 
+                                scaleLabel: { 
+                                    display: true,
+                                    labelString: id.indexOf("Area") == -1 ? "value" : "px²"
+                                }
+                            }]
+                        },
+                        legend: { 
+                            onHover: function (evt, element) {
+                                if (element) {
+                                    var ind = element.datasetIndex;
+                                    this.chart.config.data.datasets[ind].borderWidth = 7;
+                                    this.chart.config.data.datasets.map((dataset, index) => { dataset.borderColor = index == ind ? dataset.borderColor : dataset.borderColor.split(")")[0] + ',0.2)' })
+                                    this.chart.update();
+                                }
+                                
+                            },
+                            onLeave: function(evt, element) {
+                                if (element) {
+                                    var ind = element.datasetIndex;
+                                    this.chart.config.data.datasets[ind].borderWidth = 2;
+                                    this.chart.config.data.datasets.map((dataset, index) => { dataset.borderColor = index == ind ? dataset.borderColor : dataset.borderColor.split(",0.2)")[0] + ')' })
+                                    this.chart.update();
+                                }
+                            },
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: [
+                            //     {
+                            //     type: 'line',
+                            //     mode: 'vertical',
+                            //     scaleID: 'x-axis-0',
+                            //     value: '1',
+                            //     borderColor: 'red',
+                            //     borderWidth: 3,
+                            //     label: {
+                            //         // Background color of label, default below
+                            //         backgroundColor: 'rgba(0,0,0,0.8)',
+
+                            //         // Font family of text, inherits from global
+                            //         fontFamily: "sans-serif",
+
+                            //         // Font size of text, inherits from global
+                            //         fontSize: 12,
+
+                            //         // Font style of text, default below
+                            //         fontStyle: "bold",
+
+                            //         // Font color of text, default below
+                            //         fontColor: "#fff",
+
+                            //         // Padding of label to add left/right, default below
+                            //         xPadding: 6,
+
+                            //         // Padding of label to add top/bottom, default below
+                            //         yPadding: 6,
+
+                            //         // Radius of label rectangle, default below
+                            //         cornerRadius: 6,
+
+                            //         // Anchor position of label on line, can be one of: top, bottom, left, right, center. Default below.
+                            //         position: "center",
+
+                            //         // Adjustment along x-axis (left-right) of label relative to above number (can be negative)
+                            //         // For horizontal lines positioned left or right, negative values move
+                            //         // the label toward the edge, and positive values toward the center.
+                            //         xAdjust: 0,
+
+                            //         // Adjustment along y-axis (top-bottom) of label relative to above number (can be negative)
+                            //         // For vertical lines positioned top or bottom, negative values move
+                            //         // the label toward the edge, and positive values toward the center.
+                            //         yAdjust: 0,
+
+                            //         // Whether the label is enabled and should be displayed
+                            //         enabled: true,
+
+                            //         // Text to display in label - default is null
+                            //         content: "Test label"
+                            //     },
+                            // }
+                            ]
+                        },
+                        plugins: {
+                            chartJsPluginErrorBars: { width: 15 }
+                        },
+                    }
+                });
+
+                if (id == "환경정보" || id == "물사용량") {
+                    chart[id].options = {
+                        tooltips: {
+                            enabled: false,
+                            mode: "index",
+                            intersect: false,
+                            custom: customTooltips
+                        },
+                        hover: {
+                            mode: "index",
+                            intersect: false,
+                        },
+                        elements: {
+                            point: {
+                                radius: 0,
+                            },
+                        },
+                        responsive: true,
+                        maintainAspectRatio : false,
+                        responsiveAnimationDuration: 1000,
+                        legend: { 
+                            // onHover: function (evt, element) {
+                            //     if (element) {
+                            //         var ind = element.datasetIndex;
+                            //         this.chart.config.data.datasets[ind].borderWidth = 7;
+                            //         this.chart.config.data.datasets.map((dataset, index) => { dataset.borderColor = index == ind ? dataset.borderColor : dataset.borderColor.split(")")[0] + ',0.2)' })
+                            //         this.chart.update();
+                            //     }
+                                
+                            // },
+                            // onLeave: function(evt, element) {
+                            //     if (element) {
+                            //         var ind = element.datasetIndex;
+                            //         this.chart.config.data.datasets[ind].borderWidth = 2;
+                            //         this.chart.config.data.datasets.map((dataset, index) => { dataset.borderColor = index == ind ? dataset.borderColor : dataset.borderColor.split(",0.2)")[0] + ')' })
+                            //         this.chart.update();
+                            //     }
+                            // },
+                            position: 'top',
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: { 
+                                    borderDash: [0, 1], 
+                                    zeroLineColor: "rgb(0, 0, 0)"
+                                },
+                                type: "time",
+                                time: {
+                                    unit: "minute",
+                                    displayFormats: {
+                                        minute: "MM-DD HH:mm",
+                                    },
+                                },
+                                ticks: {
+                                    autoSkip: true,
+                                    autoSkipPadding: 50,
+                                    maxRotation: 0,
+                                    maxTicksLimit: 20
+                                },
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Date",
+                                },
+                            }, ],
+                            yAxes: [{
+                                gridLines: { 
+                                    borderDash: [0, 1], 
+                                    zeroLineColor: "rgb(0, 0, 0)"
+                                },
+                                id: 'a',
+                                position: 'left',
+                                scaleLabel: { 
+                                    display: true,
+                                    labelString: "Temperature, MeansHD"
+                                }
+                            },
+                            {
+                                gridLines: { 
+                                    borderDash: [0, 1], 
+                                    zeroLineColor: "rgb(0, 0, 0)"
+                                },
+                                id: 'b',
+                                position: 'right',
+                                scaleLabel: { 
+                                    display: true,
+                                    labelString: "Insolation, CO2"
+                                }
+                            }]
+                        }
+                    };
+                    if (id == "환경정보") {
+                        chart[id].options.scales.yAxes[0].scaleLabel.labelString = 'Temperature °C, MeansHD g/m3'
+                        chart[id].options.scales.yAxes[1].scaleLabel.labelString = 'Insolation J/cm², CO2 ppm'
+                    } else {
+                        chart[id].options.scales.yAxes[0].scaleLabel.labelString = 'g'
+                        chart[id].options.scales.yAxes.splice(1, 1);
+                        // chart[id].options.scales.yAxes[1].scaleLabel.labelString = 'after'
+                    }
+                }
+            }
+
+
+            // 전체선택 버튼 이벤트
+            function selectAll(selectAll) {
+                var name = null;
+                var toggle = 0;
+
+                if (selectAll == "angleButton") {
+                    if ($(':radio[name="radio_btn_label"]:checked').val() == 1) {
+                        name = "control_angleBox";
+                        if (ACCheck++ % 2 == 0) toggle = 1;
+                    } else {
+                        name = "angleBox";
+                        if (ACheck++ % 2 == 0) toggle = 1;
+                    }
+                }
+                else if (selectAll == "dataButton") {
+                    name = "dataBox";
+                    if (VCheck++ % 2 == 0) toggle = 1;
+                }
+                else {
+                    if ($(':radio[name="radio_btn_label"]:checked').val() == 1) {
+                        name = "control_labelBox";
+                        if (LCCheck++ % 2 == 0) toggle = 1;
+                    } else {
+                        name = "labelBox";
+                        if (LCheck++ % 2 == 0) toggle = 1;
+                    }
+                }
+                const checkboxes = document.querySelectorAll("input[name=" + name + "]");
+                checkboxes.forEach((checkbox) => {
+                    if (toggle == 1 && $("#" + checkbox.id).prop('checked') == false) $(checkbox).trigger("click");
+                    else if (toggle == 0 && $("#" + checkbox.id).prop('checked')) $(checkbox).trigger("click");
+                })
+            }
+
+            
+            // 재해구간
+            function addAnnotation(chartIdx, date, content) {
+                try{
+                    if (annolist.indexOf(chart[chartIdx].config.data.labels[date].split(";")[0] + "_" + content) == -1) {
+                        annolist.push(chart[chartIdx].config.data.labels[date].split(";")[0] + "_" + content)
+                    }
+                    updateLabel(function(label) { chart[chartIdx].config.data.labels = label; })
+    
+                    chart[chartIdx].options.annotation.annotations.push({
+                        type: 'line',
+                        mode: 'vertical',
+                        scaleID: 'x-axis-0',
+                        value: chart[chartIdx].config.data.labels[date],
+                        borderColor: "hsla(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%)",
+                        borderWidth: 3,
+                        label: {
+                            backgroundColor: "hsla(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%)",
+                            content: content,
+                            position: "bottom",
+                            enabled: true,
+                            yAdjust: 1,
+                        }
+                    })
+                } catch {}
+            }
+            function apply_annotation_all() {
+                $.each(Attri, (i, v) => {
+                    if ($("#type_disater").val() == 'direct') var content = $("#selfBox").val();
+                    else var content = $("#type_disater").val();
+                    if ($("#type_stdate").val() != "") {
+                        addAnnotation(v.comment + "_average", $("#type_stdate").val(), (content + "-시작"));
+                        addAnnotation(v.comment, $("#type_stdate").val(), (content + "-시작"));
+                    }
+                    if ($("#type_eddate").val() != "") {
+                        addAnnotation(v.comment + "_average", $("#type_eddate").val(), (content + "-종료"));
+                        addAnnotation(v.comment, $("#type_eddate").val(), (content + "-종료"));
+                    }
+                    if (groupKey == 0) updateErrorBars(v.comment, labelCheck, controlLabel);
+                    else updateErrorBars(v.comment, checkGroupLabel, controlGroupLabel);
+                    chart[v.comment].update();
+                    if (Attri.length -1 == i) {
+                        if ($("#type_disater").val() == 'direct') var content = $("#selfBox").val();
+                        else var content = $("#type_disater").val();
+                        if ($("#type_stdate").val() != "") {
+                            addAnnotation("color_average", $("#type_stdate").val(), (content + "-시작"));
+                            addAnnotation("color", $("#type_stdate").val(), (content + "-시작"));
+                        }
+                        if ($("#type_eddate").val() != "") {
+                            addAnnotation("color_average", $("#type_eddate").val(), (content + "-종료"));
+                            addAnnotation("color", $("#type_eddate").val(), (content + "-종료"));
+                        }
+                        chart["color"].update();
+                        if (groupKey == 0) updateErrorBars("color", labelCheck, controlLabel);
+                        else updateErrorBars("color", checkGroupLabel, controlGroupLabel);
+                        updateAll();
+                    }
+                })
+            }
+            function modify_annotation() {
+                var html;
+                $("#type_stdate").html("");
+                $("#type_eddate").html("");
+                $("#annotation_select").html("");
+                addDisaterList();
+                html = `<option value="">날짜 선택</option>"`
+                $("#type_stdate").append(html);
+                $("#type_eddate").append(html);
+                $.each(dateAll, (i, v) => {
+                    html = `<option value="` + i + `">`+ v + `</option>"`
+                    $("#type_stdate").append(html);
+                    $("#type_eddate").append(html);
+                }); 
+                $("#annotationModal").modal("show");
+            }
+            function deleteAll_annotation() {
+                annolist = [];
+                $.each(Attri, (i, v) => {
+                    updateLabel(function(label) { chart[v.comment + "_average"].config.data.labels = label; })
+                    updateLabel(function(label) { chart[v.comment].config.data.labels = label; })
+                    chart[v.comment + "_average"].options.annotation.annotations = [];
+                    chart[v.comment].options.annotation.annotations = [];
+                    if (groupKey == 0) updateErrorBars(v.comment, labelCheck, controlLabel);
+                    else updateErrorBars(v.comment, checkGroupLabel, controlGroupLabel);
+                    chart[v.comment].update();
+                })
+                updateLabel(function(label) { chart["color_average"].config.data.labels = label; })
+                updateLabel(function(label) { chart["color"].config.data.labels = label; })
+                chart["color_average"].options.annotation.annotations = [];
+                chart["color"].options.annotation.annotations = [];
+                chart["color_average"].update();
+                chart["color"].update();
+                updateAll();
+            }
+            function addDisaterList() {
+                $("#annotation_select").html("");
+                $.each(annolist, (i, v) => {
+                    var html = `<option value="` + v.split("_")[0] + `">`+ v + `</option>"`
+                    $("#annotation_select").append(html);
+                })
+            }
+            $("#type_chart").on('change', function(event) { if ($("#type_chart").val() != "") addDisaterList() })
+            
+            
+            // 컬러픽커 모달 색상 적용 변경
+            function modify_color() {
+                $("#label_modal").html("");
+                if (groupKey == 0) {
+                    $.each(labelCheck, (i, v) => {
+                        var hslbackground = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, 50%)"
+                        var style = 'background:' + hslbackground;
+                            style += '; width : 15px'; 
+                            style += '; height : 15px'; 
+                            style += '; border: 1px solid white';
+                            style += '; margin-right : 5px'
+                            style += '; padding-right : 5px'
+                            style += '; display  : inline-block'; 
+    
+                        var html = `<label class="col-lg-6"><div class="row"><input type="checkbox" name="labelBoxModal" id="` + v + `_실험구_modal" style="margin-top: 3px;" value="` + (i + 1) + `"><h6 style="font-weight: 700;">&nbsp;` + v + `_실험구&nbsp;</h6><span style="` + style + `; margin-top: 3px;"></span></div></label>`
+                        $("#label_modal").append(html);
+                    })
+                    $.each(controlLabel, (i, v) => {
+                        var hslbackground = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, 50%)"
+                        var style = 'background:' + hslbackground;
+                            style += '; width : 15px'; 
+                            style += '; height : 15px'; 
+                            style += '; border: 1px solid white';
+                            style += '; margin-right : 5px'
+                            style += '; padding-right : 5px'
+                            style += '; display  : inline-block'; 
+    
+                        var html = `<label class="col-lg-6"><div class="row"><input type="checkbox" name="labelBoxModal" id="` + v + `_대조구_modal" style="margin-top: 3px;" value="` + (i + 1) + `"><h6 style="font-weight: 700;">&nbsp;` + v + `_대조구&nbsp;</h6><span style="` + style + `; margin-top: 3px;"></span></div></label>`
+                        $("#label_modal").append(html);
+                    })
+                } else {
+                    $.each(checkGroupLabel, (i, v) => {
+                        var hslbackground = "hsl(" + labelColor[v + "_실험구"].split("_")[0] + ", " + labelColor[v + "_실험구"].split("_")[1] + "%, 50%)"
+                        var style = 'background:' + hslbackground;
+                            style += '; width : 15px'; 
+                            style += '; height : 15px'; 
+                            style += '; border: 1px solid white';
+                            style += '; margin-right : 5px'
+                            style += '; padding-right : 5px'
+                            style += '; display  : inline-block'; 
+    
+                        var html = `<label class="col-lg-6"><div class="row"><input type="checkbox" name="labelBoxModal" id="` + v + `_실험구_modal" style="margin-top: 3px;" value="` + (i + 1) + `"><h6 style="font-weight: 700;">&nbsp;` + v + `_실험구&nbsp;</h6><span style="` + style + `; margin-top: 3px;"></span></div></label>`
+                        $("#label_modal").append(html);
+                    })
+                    $.each(controlGroupLabel, (i, v) => {
+                        var hslbackground = "hsl(" + labelColor[v + "_대조구"].split("_")[0] + ", " + labelColor[v + "_대조구"].split("_")[1] + "%, 50%)"
+                        var style = 'background:' + hslbackground;
+                            style += '; width : 15px'; 
+                            style += '; height : 15px'; 
+                            style += '; border: 1px solid white';
+                            style += '; margin-right : 5px'
+                            style += '; padding-right : 5px'
+                            style += '; display  : inline-block'; 
+    
+                        var html = `<label class="col-lg-6"><div class="row"><input type="checkbox" name="labelBoxModal" id="` + v + `_대조구_modal" style="margin-top: 3px;" value="` + (i + 1) + `"><h6 style="font-weight: 700;">&nbsp;` + v + `_대조구&nbsp;</h6><span style="` + style + `; margin-top: 3px;"></span></div></label>`
+                        $("#label_modal").append(html);
+                    })
+                }
+                $.each($("input:checkbox[name=labelBoxModal]"), (i, v) => { v.checked = false; })
+                $("#labelModal").modal("show");
+            }
+            function applyLabelColor() {
+                $.each($("input:checkbox[name=labelBoxModal]:checked"), (i, v) => {
+                    var label = v.id.split("_modal")[0];
+                    console.log(label)
+                    labelColor[label] = modal_hue.getValue() + "_" + modal_saturation.getValue();
+                    $.each(chart, (i, v) => {
+                        $.each(v.config.data.datasets, (i2, v2) => {
+                            if (label == v2.label.split("_VIS")[0] + "_" + v2.label.split("_")[v2.label.split("_").length - 1] ||
+                            label == v2.label.split("_VIS")[0] + "_" + v2.label.split("_")[v2.label.split("_").length - 2]) {
+                                var hslborder = "hsla(" + labelColor[label].split("_")[0] + ", " + labelColor[label].split("_")[1] + "%, " + (((Number(v2.label.split("SV")[1].split("_")[0]) / 18) * 3.5) + 20) + "%)"
+                                var hslbackground = "hsl(" + labelColor[label].split("_")[0] + ", " + labelColor[label].split("_")[1] + "%, " + (((Number(v2.label.split("SV")[1].split("_")[0]) / 18) * 3.5) + 20) + "%)"
+                                v2.backgroundColor = hslbackground;
+                                v2.borderColor = hslborder;
+                            } else if (label == v2.label.split("_average")[0]) {
+                                var hslborder = "hsla(" + labelColor[label].split("_")[0] + ", " + labelColor[label].split("_")[1] + "%, " + "50%)"
+                                var hslbackground = "hsl(" + labelColor[label].split("_")[0] + ", " + labelColor[label].split("_")[1] + "%, " + "50%)"
+                                v2.backgroundColor = hslbackground;
+                                v2.borderColor = hslborder;
+                            }
+                        })
+                        v.update();
+                    })
+                })    
+            }
+
+
+            function downloadChart(id) {
+                var url = document.createElement('a');
+                url.href = chart[id].toBase64Image();
+                url.download = id + "_chart.png";
+                url.click();
+            }
+            function downloadImage() {
+                var imgAll = [];
+                $.each(imgPath, (i, v) => {
+                    $.each(v, (i2, v2) => {
+                        $.each(v2, (i3, v3) => { if (v3 != undefined) imgAll.push(v3); })
+                    })
+                })
+                $.each(controlPath, (i, v) => {
+                    $.each(v, (i2, v2) => {
+                        $.each(v2, (i3, v3) => { if (v3 != undefined) imgAll.push(v3); })
+                    })
+                })
+                window.open("/exportImage?file=" + JSON.stringify(imgAll));
+            }
+
+
+            window.onload = function() {
+                // 컬러픽커 모달 슬라이더
+                $("#modify_image_annotation").on('click', function() { modify_annotation();  })
+                anno_modal_hue = new Slider("#hue_annotation", {
+                    min: 0,
+                    max: 360,
+                    step: 1,
+                    value: 360
+                });
+                anno_modal_hue.on('change', function(event) { $("#background_color_annotation").css("background", "hsl(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%)") })
+                anno_modal_saturation = new Slider("#saturation_annotation", {
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    value: 100
+                });
+                anno_modal_saturation.on('change', function(event) { $("#background_color_annotation").css("background", "hsl(" + anno_modal_hue.getValue() + ", " + anno_modal_saturation.getValue() + "%, 50%)") })
+
+
+                $("#modify_image_color").on('click', function() { $("#disaterModal").modal("show"); })
+                disater_modal_red = new Slider("#red_disater", {
+                    min: 0,
+                    max: 255,
+                    step: 1,
+                    value: 255
+                });
+                disater_modal_red.on('change', function(event) { $("#background_color_disater").css("background", "rgb(" + disater_modal_red.getValue() + ", " + disater_modal_green.getValue() + "," + disater_modal_blue.getValue() + ")") })
+                disater_modal_green = new Slider("#green_disater", {
+                    min: 0,
+                    max: 255,
+                    step: 1,
+                    value: 0
+                });
+                disater_modal_green.on('change', function(event) { $("#background_color_disater").css("background", "rgb(" + disater_modal_red.getValue() + ", " + disater_modal_green.getValue() + "," + disater_modal_blue.getValue() + ")") })
+                disater_modal_blue = new Slider("#blue_disater", {
+                    min: 0,
+                    max: 255,
+                    step: 1,
+                    value: 0
+                });
+                disater_modal_blue.on('change', function(event) { $("#background_color_disater").css("background", "rgb(" + disater_modal_red.getValue() + ", " + disater_modal_green.getValue() + "," + disater_modal_blue.getValue() + ")") })
+                
+                
+                $("#modify_chart_color").on('click', function() { modify_color(); })
+                modal_hue = new Slider("#hue", {
+                    min: 0,
+                    max: 360,
+                    step: 1,
+                    value: 100
+                });
+                modal_hue.on('change', function(event) { $("#background_color").css("background", "hsl(" + modal_hue.getValue() + ", " + modal_saturation.getValue() + "%, 50%)") })
+                modal_saturation = new Slider("#saturation", {
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    value: 100
+                });
+                modal_saturation.on('change', function(event) { $("#background_color").css("background", "hsl(" + modal_hue.getValue() + ", " + modal_saturation.getValue() + "%, 50%)") })
+
+
+                // 이미지 슬라이더
+                mySlider = new Slider("#imgSlider", {
+                    value: 0,
+                    min: 0,
+                    max: 0,
+                    step: 1,
+                    formatter: function(value) {
+                        if (imgDate.length == 0) return value;
+                        else if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) return imgDate[value];
+                        else return angleCheck[value];
+                    }
+                });
+                mySlider.on('change', function(event) { getImage("imgTable", imgPath, labelCheck, angleCheck, mySlider, imgDate); })
+
+
+                $(':radio[name="radio_btn_angle"]').change(function(event) {
+                    if (mySlider.getValue() > 0) mySlider.setValue(0);
+                    if (control_slider.getValue() > 0) control_slider.setValue(0);
+                    getImage("controlTable", controlPath, controlLabel, controlAngle, control_slider, controlImgDate);
+                    getImage("imgTable", imgPath, labelCheck, angleCheck, mySlider, imgDate);
+                })
+
+                control_slider = new Slider("#control_slider", {
+                    value: 0,
+                    min: 0,
+                    max: 0,
+                    step: 1,
+                    formatter: function(value) {
+                        if (controlImgDate.length == 0) return value;
+                        else if ($(':radio[name="radio_btn_angle"]:checked').val() == 1) return controlImgDate[value];
+                        else return controlAngle[value];
+                    }
+                });
+                control_slider.on('change', function(event) { getImage("controlTable", controlPath, controlLabel, controlAngle, control_slider, controlImgDate); })
+
+                // 이미지 슬라이더 생성 및 체인지 이벤트
+                humidity = new Slider("#hueRangeSlider", {
+                    min: 0,
+                    max: 255,
+                    step: 1,
+                    value: [25, 50],
+                    formatter: function(value) {
+                        if (value != undefined) return "Hue : [" + value[0] + ", " + value[1] + "]";
+                    },
+                });
+                humidity.on('change', function(event) {
+                    var left = [document.getElementById("hueRange_div").getElementsByClassName('min-slider-handle')[0].style.cssText.split('left:')[1].split(';')[0], document.getElementById("hueRange_div").getElementsByClassName('max-slider-handle')[0].style.cssText.split('left:')[1].split(';')[0]]
+                    $("#hueRange_div .min-slider-handle").attr("style", "background-image: linear-gradient(to bottom,hsl(" + ((parseFloat(event.newValue[0]) / 255) * 360) + ", 100%, 50%),hsl(" + ((parseFloat(event.newValue[0]) / 255) * 360) + ", 100%, 50%)) !important; left:" + left[0] + ";");
+                    $("#hueRange_div .max-slider-handle").attr("style", "background-image: linear-gradient(to bottom,hsl(" + ((parseFloat(event.newValue[1]) / 255) * 360) + ", 100%, 50%),hsl(" + ((parseFloat(event.newValue[1]) / 255) * 360) + ", 100%, 50%)) !important; left:" + left[1] + ";");
+                })
+                var left_Green = [document.getElementById("hueRange_div").getElementsByClassName('min-slider-handle')[0].style.cssText.split('left:')[1].split(';')[0], document.getElementById("hueRange_div").getElementsByClassName('max-slider-handle')[0].style.cssText.split('left:')[1].split(';')[0]]
+                $("#hueRange_div .min-slider-handle").attr("style", "background-image: linear-gradient(to bottom,hsl(" + ((25 / 255) * 360) + ", 100%, 50%),hsl(" + ((25 / 255) * 360) + ", 100%, 50%)) !important; left:" + left_Green[0] + ";");
+                $("#hueRange_div .max-slider-handle").attr("style", "background-image: linear-gradient(to bottom,hsl(" + ((50 / 255) * 360) + ", 100%, 50%),hsl(" + ((50 / 255) * 360) + ", 100%, 50%)) !important; left:" + left_Green[1] + ";");
+                $("#hueRange_div .slider-track").css('background-image', 'url("/images/hue.png")')
+                $("#hueRange_div .slider-track").css('background-size', '100% 100%')
+                $("#hueRange_div .slider-track").css('background-repeat', 'no-repeat')
+                $("#hueRange_div .slider-track-low").css('background-color', 'rgb(230, 230, 230)')
+                $("#hueRange_div .slider-track-high").css('background-color', 'rgb(230, 230, 230)')
+                $("#hueRange_div .slider-selection").css('opacity', '0')
+
+
+                $(':radio[name="radio_btn_label"]').change(function(event) { 
+                    if ($(':radio[name="radio_btn_label"]:checked').val() == 1) {
+                        $("#controlLabel").css("display", "")
+                        $("#label").css("display", "none")
+                        $("#controlAngle").css("display", "")
+                        $("#angle").css("display", "none")
+                        
+                    } else {
+                        $("#controlLabel").css("display", "none")
+                        $("#label").css("display", "")
+                        $("#controlAngle").css("display", "none")
+                        $("#angle").css("display", "")
+                        
+                    }
+                })
+                
+                $(':radio[name="radio_btn_ROI"]').change(function(event) {
+                    getImage("controlTable", controlPath, controlLabel, controlAngle, control_slider, controlImgDate);
+                    getImage("imgTable", imgPath, labelCheck, angleCheck, mySlider, imgDate);
+                })
+
+
+
+                // 선택 연구 데이터 가져오기
+                var par = location.search.substr(location.search.indexOf("?") + 1);
+                var label = [], angle = [];
+                var imgids = [];
+                var imgs = [];
+                get_res_id = par.split("=")[1].split(",")[0];
+                groupKey = par.split("=")[1].split(",")[1];
+                if (groupKey == 'null') groupKey = 0;
+
+                $.ajax({
+                    url: "/onloadChart",
+                    method: "post",
+                    data: { res_id: get_res_id },
+                    success: function(data) {
+                        // 데이터 라벨별, 각도별, 시간별 정렬
+                        data = data.sort(function(a, b) { return new Date(a.time) - new Date(b.time); })
+                        data = data.sort(function(a, b) {
+                            if (a.angle < b.angle) return -1;
+                            if (a.angle > b.angle) return 1;
+                            return 0;
+                        })
+                        datas = data.sort(function(a, b) {
+                            if (a.label < b.label) return -1;
+                            if (a.label > b.label) return 1;
+                            return 0;
+                        })
+
+                        // 수치데이터 테이블 생성
+                        $("#table_body").html("");
+                        table = $("#tableId").DataTable({
+                            // "responsive": true, "lengthChange": false, "autoWidth": false,
+                            dom: 'Bfrtip',
+                            buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                            scrollX: 'scroll'
+                        });
+                        $.each(data, (i, v) => {
+                            table.row.add([
+                                (i + 1), v["label"], v["angle"], v["time"].split("T")[0] + " " + v["time"].split("T")[1].split("Z")[0],
+                                v["dt0"], v["dt1"], v["dt2"], v["dt3"], v["dt4"], v["dt5"], v["dt6"], v["dt7"], v["dt8"], v["dt9"],
+                                v["dt10"], v["dt11"], v["dt12"], v["dt13"], v["dt14"], v["dt15"], v["dt16"], 
+                                v["dt17"], v["dt18"], v["dt19"], v["dt20"], v["dt21"], v["dt22"]
+                            ]);
+                            if (data.length - 1 == i) table.draw();
+                            if (label.indexOf(v.label) == -1) label.push(v.label);
+                            if (angle.indexOf(v.angle) == -1) angle.push(v.angle);
+                            if (imgids.indexOf(v.imgids) == -1) imgids.push(v.img_id);
+                            if (imgs.indexOf(v.img_path) == -1) imgs.push(v.img_path);
+                        })
+                        label.sort();
+                        angle.sort();
+
+                        if (groupKey == 1) {
+                            $.ajax({
+                                url: "/onloadGrouping",
+                                method: "get",
+                                async: false,
+                                data: { res_id: get_res_id },
+                                success: function(data) {
+                                    var temp = {}
+                                    $.each(data, (i, v) => {
+                                        if (labelGroup[v.group] == undefined) {
+                                            labelGroup[v.group] = [];
+                                            temp[v.group] = [];
+                                        }
+                                        labelGroup[v.group].push(v.label);
+                                        temp[v.group].push(v.label);
+                                    })
+
+                                    $.each(label, (i, v) => {
+                                        var idx = -1
+                                        $.each(labelGroup, (i2, v2) => {
+                                            if (idx == -1) idx = v2.indexOf(v);
+                                        })
+                                        if (idx == -1) temp[v] = [v]
+                                    })
+                                    labelGroup = temp;
+                                }
+                            })
+                        }
+
+                        // 크롭 이미지 생성
+                        $.ajax({
+                            url: "/GetCrop",
+                            method: "post",
+                            data: {
+                                image: JSON.stringify(imgs),
+                                resid: get_res_id
+                            },
+                            success: function(data) { $("#roi_div").css("display", ""); }
+                        })
+                        // 물사용량 데이터 저장
+                        $.ajax({
+                            url: "/onloadWater",
+                            method: "post",
+                            data: { res_id: get_res_id },
+                            success: function(data) { 
+                                waterData = data; 
+                                waterData = waterData.sort(function(a, b) { return new Date(a.time) - new Date(b.time); })
+                            }
+                        })
+
+
+                        // 컬러 데이터 저장
+                        $.ajax({
+                            url: "/onloadColor",
+                            method: "post",
+                            data: { id: JSON.stringify(imgids) },
+                            success: function(data) {
+                                $.each(data, (i, v) => {
+                                    colorData.push({
+                                        imgid: v.imgid,
+                                        val: JSON.parse(v.val)
+                                    })
+                                    if (data.length - 1 == i) colorData = colorData.sort(function(a, b) { return a.imgid - b.imgid; })
+                                })
+                            }
+                        })
+
+                        // 차트 및 데이터 속성 이름 가져오기
+                        $.ajax({
+                            url: "/dataAttribute",
+                            method: "get",
+                            data: "",
+                            success: function(data) {
+                                var labelInformation = []
+                                Attri = data
+                                $("#setForm").html("")
+                                var html = `<div class="row" style="margin-bottom: 5px;margin-top: 5px;">
+                                                <label class="col-lg-4" style="display: flex;"><input type="checkbox" name="dataBox" id="datacheck_0" checked><h6 style="margin-bottom: 0px;">&nbsp;수치데이터 테이블 </h6></label>
+                                                <label class="col-lg-4" style="display: flex;"><input type="checkbox" name="dataBox" id="datacheck_1"><h6 style="margin-bottom: 0px;">&nbsp;환경정보 </h6></label>
+                                                <label class="col-lg-4" style="display: flex;"><input type="checkbox" name="dataBox" id="datacheck_2"><h6 style="margin-bottom: 0px;">&nbsp;물사용량 </h6></label>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
+                                                <label class="col-lg-4" style="display: flex;"><input type="checkbox" name="dataBox" id="datacheck_3"><h6 style="margin-bottom: 0px;">&nbsp;색상 </h6></label>`
+                                labelInformation.push("table");
+                                labelInformation.push("환경정보");
+                                labelInformation.push("물사용량");
+                                labelInformation.push("color");
+                                createCard("color");
+                                createChart("color");
+                                createCard("color_average");
+                                createChart("color_average");
+                                $("#card_color").css("display", "none")
+                                $("#card_color_average").css("display", "none")
+
+                                $.each(Attri, (i, v) => {
+                                    if (i + 1 % 3 == 0) html += '</div><div class="row" style="margin-bottom: 5px;margin-top: 5px;">'
+                                    html += '<label class="col-lg-4" style="display: flex;"><input type="checkbox" name="dataBox" id="datacheck_'+ (i + 4) +'"><h6 style="margin-bottom: 0px;">&nbsp;' + v.comment + ' </h6></label>'
+                                    if (Attri.length - 1 == i) $("#setForm").html(html);
+                                    labelInformation.push(v.comment);
+
+                                    createCard(v.comment);
+                                    createChart(v.comment);
+                                    createCard(v.comment + "_average");
+                                    createChart(v.comment + "_average");
+                                    $("#card_" + v.comment).css("display", "none")
+                                    $("#card_" + v.comment + "_average").css("display", "none")
+                                    if (Attri.length - 1 == i) {
+                                        createCard("물사용량");
+                                        createChart("물사용량");
+                                        createCard("환경정보");
+                                        createChart("환경정보");
+                                        $("#card_물사용량").css("display", "none")
+                                        $("#card_환경정보").css("display", "none")
+                                    }
+                                })
+                                // 연구설정 체크박스 이벤트
+                                $.each(labelInformation, (i, v) => {                    
+                                    $("#datacheck_" + i).on('click', function() {
+                                        if ($("#datacheck_" + i).prop('checked')) {
+                                            if ($(':radio[name="radio_btn_info"]:checked').val() == 1 || i < 3) $("#card_" + v).css("display", "");
+                                            else $("#card_" + v + "_average").css("display", "");
+                                        } else {
+                                            if ($(':radio[name="radio_btn_info"]:checked').val() == 1 || i < 3) $("#card_" + v).css("display", "none");
+                                            else $("#card_" + v + "_average").css("display", "none");
+                                        }
+                                    })
+                                    
+                                })
+
+
+                                // 연구설정 보기 라디오버튼 이벤트
+                                $(':radio[name="radio_btn_info"]').change(function(event) {
+                                    $.each(Attri, (i, v) => {
+                                        if (this.value == 1) {
+                                            if ($("#datacheck_" + (i + 4)).prop('checked')) {
+                                                $("#card_" + v.comment).css("display", "");
+                                                $("#card_" + v.comment + "_average").css("display", "none");
+                                            }
+                                        } else {
+                                            if ($("#datacheck_" + (i + 4)).prop('checked')) {
+                                                $("#card_" + v.comment).css("display", "none");
+                                                $("#card_" + v.comment + "_average").css("display", "");
+                                            }
+                                        }
+                                    })
+                                    if (this.value == 1) {
+                                        if ($("#datacheck_3").prop('checked')) {
+                                            $("#card_color").css("display", "");
+                                            $("#card_color_average").css("display", "none");
+                                        }
+                                    } else {
+                                        if ($("#datacheck_3").prop('checked')) {
+                                            $("#card_color").css("display", "none");
+                                            $("#card_color_average").css("display", "");
+                                        }
+                                    }
+                                })
+                            }
+                        });   
+
+                        if (groupKey == 1) createFormControl(labelGroup, angle, groupKey);
+                        else createFormControl(label, angle, groupKey);
+                    }
+                });
+                $(function() {
+                    $("#type_disater").change(function() {
+                        if ($("#type_disater").val() == "direct") $("#selfBox").attr("disabled", false);
+                        else $("#selfBox").attr("disabled", true);
+                    })
+                }) 
+            }
+        </script>
+    </body>
+</html>

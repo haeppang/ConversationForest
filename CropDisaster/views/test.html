@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <style src="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"></style>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+  </head>
+  <body>
+    <div id="div" style="overflow-x: scroll">
+      <table id="table">
+        <thead>
+          <tr>
+            Label
+          </tr>
+          <tr>
+            Image
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+  <script>
+    var t
+    $(window).ready(function () {
+      var opt = {
+        columnDefs: [
+          {
+            targets: 1,
+            render: function (data, type, row, meta) {
+              // console.log('<img src="users/' + data + '" alt="' + data + '"height="150" width="100"/>')
+              console.log(data, type, row, meta)
+              return '<img src="' + data + '" alt="' + data + '"height="150" width="100"/>'
+            },
+          },
+        ],
+        info: false,
+        order: [[0, "asc"]],
+        paging: false,
+        responsive: true,
+        searching: false,
+      }
+      t = $("#table").DataTable(opt)
+
+      // var files = [
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-29 13_34_09.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-23 13_34_08.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-10 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-24 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-02 16_08_43.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-20 13_34_14.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-06 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-25 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-04 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-28 11_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-07 16_17_06.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-12 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-08 14_00_08.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-09 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-05 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-30 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-20 13_35_27.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-21 13_35_25.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-26 16_10_25.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-19 13_35_29.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-31 19_07_56.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-21 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-03 16_34_12.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-13 13_34_12.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-01 13_34_13.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-19 13_34_12.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-11 13_45_44.png",
+      //   "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-27 13_34_14.png",
+      // ]
+      // files.sort()
+      // $.ajax({
+      //   url: "/GetCrop",
+      //   data: {
+      //     image: JSON.stringify(files),
+      //     resid: 77,
+      //   },
+      //   method: "get",
+      //   success: function (data) {
+      //     console.log(data)
+
+      //     // string = "<img src='" + data.filename + "' width=100px,heigh=150px>"
+      //     // t.row.add([data.filename]).draw(false)
+      //   },
+      // })
+      var files2 = {
+        0: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-29 13_34_09.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-29 13_34_09_result.png"],
+        1: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-23 13_34_08.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-23 13_34_08_result.png"],
+        2: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-10 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-10 13_34_13_result.png"],
+        3: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-24 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-24 13_34_13_result.png"],
+        4: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-02 16_08_43.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-02 16_08_43_result.png"],
+        5: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-20 13_34_14.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-20 13_34_14_result.png"],
+        6: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-06 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-06 13_34_13_result.png"],
+        7: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-25 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-25 13_34_13_result.png"],
+        8: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-04 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-04 13_34_13_result.png"],
+        9: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-28 11_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-28 11_34_13_result.png"],
+        10: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-07 16_17_06.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-07 16_17_06_result.png"],
+        11: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-12 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-12 13_34_13_result.png"],
+        12: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-08 14_00_08.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-08 14_00_08_result.png"],
+        13: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-09 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-09 13_34_13_result.png"],
+        14: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-05 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-05 13_34_13_result.png"],
+        15: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-30 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-30 13_34_13_result.png"],
+        16: ["/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-20 13_35_27.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-20 13_35_27_result.png"],
+        17: ["/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-21 13_35_25.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-21 13_35_25_result.png"],
+        18: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-26 16_10_25.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-26 16_10_25_result.png"],
+        19: ["/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-19 13_35_29.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_02_VIS_SV0_2022-01-19 13_35_29_result.png"],
+        20: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-31 19_07_56.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-31 19_07_56_result.png"],
+        21: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-21 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-21 13_34_13_result.png"],
+        22: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-03 16_34_12.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-03 16_34_12_result.png"],
+        23: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-13 13_34_12.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-13 13_34_12_result.png"],
+        24: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-01 13_34_13.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-01 13_34_13_result.png"],
+        25: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-19 13_34_12.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-19 13_34_12_result.png"],
+        26: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-11 13_45_44.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-02-11 13_45_44_result.png"],
+        27: ["/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-27 13_34_14.png", "/2022_KSL_SOYBEAN_SALT_01_A_08_01_VIS_SV0_2022-01-27 13_34_14_result.png"],
+      }
+
+      // $.ajax({
+      //   url: "/GetMask",
+      //   data: {
+      //     image: JSON.stringify(files2),
+      //     hmin: 45,
+      //     hmax: 90,
+      //     resize: true,
+      //   },
+      //   method: "get",
+      //   success: function (data) {
+      //     console.log(data)
+
+      //     // string = "<img src='" + data.filename + "' width=100px,heigh=150px>"
+      //     // t.row.add([data.filename]).draw(false)
+      //   },
+      // })
+      // $.ajax({
+      //   url: "/GetAugment",
+      //   data: {
+      //     image: JSON.stringify(files2),
+      //     hmin: 45,
+      //     hmax: 90,
+      //     resize: true,
+      //   },
+      //   method: "get",
+      //   success: function (data) {
+      //     console.log(data)
+
+      //     // string = "<img src='" + data.filename + "' width=100px,heigh=150px>"
+      //     // t.row.add([data.filename]).draw(false)
+      //   },
+      // })
+      $.ajax({
+        url: "/GetColor",
+        data: {
+          image: JSON.stringify(files2),
+          hmin: 45,
+          hmax: 90,
+          resize: true,
+          txtcolor: '{"blue":0, "green":0, "red":255}',
+        },
+        method: "post",
+        success: function (data) {
+          console.log(data)
+
+          // string = "<img src='" + data.filename + "' width=100px,heigh=150px>"
+          // t.row.add([data.filename]).draw(false)
+        },
+      })
+
+      // ids = ["1113", "1120", "1130", "1179", "1187", "1211", "1217", "1219", "1315", "1326", "1346", "1387", "1404", "1410", "1424", "1454", "1512", "1540", "1556", "1559", "1584", "1587", "1593", "1594", "1601", "1607", "1648"]
+      // $.ajax({
+      //   url: "/GetArea",
+      //   data: {
+      //     id: JSON.stringify(ids),
+      //     hmin: 45,
+      //     hmax: 90,
+      //   },
+      //   method: "POST",
+      //   success: function (data) {
+      //     console.log(data)
+
+      //     // string = "<img src='" + data.filename + "' width=100px,heigh=150px>"
+      //     // t.row.add([data.filename]).draw(false)
+      //   },
+      // })
+    })
+  </script>
+</html>

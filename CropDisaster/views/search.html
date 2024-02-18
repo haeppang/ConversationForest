@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>작물 재해 특성 분석 자동화 및 시각화 시스템</title>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link
+            rel="stylesheet"
+            href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bootstrap 4 -->
+        <link
+            rel="stylesheet"
+            href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="dist/css/adminlte.min.css">
+        <!-- overlayScrollbars -->
+        <link
+            rel="stylesheet"
+            href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <!-- Daterange picker -->
+        <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+        <!-- summernote -->
+        <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    </head>
+
+
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            <!-- Navbar -->
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <h4 class="m-0"><small style="vertical-align: sub;">작물 재해 특성 분석 자동화 및 시각화 시스템</small></h4>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.navbar -->
+
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="/" class="brand-link" style="text-align: center;">
+                    <span class="brand-text font-weight-light">메인화면</span>
+                </a>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul
+                            class="nav nav-pills nav-sidebar flex-column"
+                            data-widget="treeview"
+                            role="menu"
+                            data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any
+                            other icon font library -->
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>대쉬보드</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/input" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>연구정보입력</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/search" class="nav-link active">
+                                    <i class="nav-icon fas fa-search"></i>
+                                    <p>연구정보검색</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0">연구정보검색</h1>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item">
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">연구정보검색</li>
+                                </ol>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-wrapper -->
+
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header"> 
+                                        <h3 class="card-title">연구 검색</h3> 
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label">관리자</label>
+                                                    <div class="col-sm-8 row">
+                                                        <input type="text" id="admin" name="admin" class="form-control" maxlength="45">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="row">
+                                                    <label class="col-sm-4 col-form-label">실험 종류</label>
+                                                    <div class="col-sm-8 row">
+                                                        <select id="res_type" name="res_type" class="form-control">
+                                                            <option value="0">건조</option>
+                                                            <option value="1">고온</option>
+                                                            <option value="2">형태</option>
+                                                            <option value="3">색상</option>
+                                                            <option value="4">기타</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-5">
+                                                <div class="row">
+                                                    <label class="col-sm-3 col-form-label">실험 날짜</label>
+                                                    <div class="col-sm-9">
+                                                        <p class="row", style="margin-left: 0px; margin-right: 0px;">
+                                                            <input type="text" name="res_stdate" id="res_stdate" class ="col-sm-5 form-control" autocomplete="off"> 
+                                                            <label class="col-sm-2 col-form-label" style="text-align: center;"> ~ </label>
+                                                            <input type="text" name="res_eddate" id="res_eddate" class ="col-sm-5 form-control" autocomplete="off">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <button id="upload_button" onclick="display()" class="btn btn-primary waves-effect waves-light" style="float:right;">검색</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card-header end -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card" style="display: none" id="card_research">
+                                    <div class="card-header">
+                                        <h3 class="card-title">연구 검색 결과</h3>
+                                    </div>
+                                    <!-- card-header end -->
+                                    <div class="card-body">
+                                        <div class="table-responsive" >
+                                            <table class="table table-bordered table-hover" id="table_research">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>관리자</th>
+                                                        <th>종</th>
+                                                        <th>연구 명</th>
+                                                        <th>연구 종류</th>
+                                                        <th>시작 날짜</th>
+                                                        <th>종료 날짜</th>
+                                                        <th>타입</th>
+                                                        <th>선택</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="table_body">
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- card-body end -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row end -->
+                    </div>
+                    <!-- container end -->
+                </div>
+                <!-- content end -->
+            </div>
+            <!-- ./wrapper -->
+        </div>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script> $.widget.bridge('uibutton', $.ui.button); </script>
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- ChartJS -->
+        <script src="plugins/chart.js/Chart.min.js"></script>
+        <!-- Sparkline -->
+        <script src="plugins/sparklines/sparkline.js"></script>
+        <!-- JQVMap -->
+        <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <!-- jQuery Knob Chart -->
+        <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+        <!-- daterangepicker -->
+        <script src="plugins/moment/moment.min.js"></script>
+        <script src="plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script
+            src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Summernote -->
+        <script src="plugins/summernote/summernote-bs4.min.js"></script>
+        <!-- overlayScrollbars -->
+        <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.js"></script>
+        <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+        <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="../../plugins/jszip/jszip.min.js"></script>
+        <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script>
+            function display() {
+                
+                $("#card_research").css("display","");
+                $("#table_body").html("");
+                $("#table_research").DataTable().clear();
+                $("#table_research").DataTable().destroy();
+                $.ajax({
+                    url:"/onloadTable",
+                    method:"get",
+                    data:{
+                        res_type : $("#res_type").val(),
+                        admin : $("#admin").val(),
+                        res_stdate : $("#res_stdate").val(),
+                        res_eddate : $("#res_eddate").val()
+                    },
+                    success:function(data) {
+                        var res_staus = [];
+                        $.ajax({
+                            url: "/getStatus",
+                            method: "get",
+                            async: false,
+                            success: function(data) { 
+                                $.each(data, (i, v) => { res_staus.push(v.res_id) })
+                            }
+                        })
+
+                        $.each(data, (i, v) => {
+                            var type = ""
+                            var res_type = ""
+                            if (v["type"] == 1) type = "종자"
+                            else type = "식물"
+                            if (v["res_type"] == 0) res_type = "건조"
+                            else if (v["res_type"] == 1) res_type = "고온"
+                            else if (v["res_type"] == 2) res_type = "형태"
+                            else if (v["res_type"] == 3) res_type = "색상"
+                            else res_type = "기타"
+
+                            var html = "<tr>\
+                                <th scope='row'>" + v["res_id"] + "</th>\
+                                <td>"+(v["res_admin"] == null ? "" : v["res_admin"]) +"</td>\
+                                <td>"+(v["species"] == null ? "" : v["species"]) +"</td>\
+                                <td>"+(v["res_name"] == null ? "" : v["res_name"]) +"</td>\
+                                <td>"+(v["res_type"] == null ? "" : res_type) +"</td>\
+                                <td>"+(v["res_stdate"] != null ? dayjs(v["res_stdate"]).format("YYYY-MM-DD") : "")+"</td>\
+                                <td>"+(v["res_eddate"] != null ? dayjs(v["res_eddate"]).format("YYYY-MM-DD") : "")+"</td>\
+                                <td>"+(v["type"] == null ? "" : type) +"</td>";
+                            
+                            var ind = res_staus.indexOf(v.res_id)
+                            if (ind == -1) {
+                                html += "<td style='text-align: center;'><button type='' onclick=" + `"window.open('/imageview?id=` + v["res_id"] + `,` + v["grouping"] + `')"` + " id='one_button_" + (i + 1) + "' class='btn btn-primary btn-round waves-effect waves-light'>보기</button></tr>";
+                            } else  html += "<td style='text-align: center;'>진행중</td>"
+
+                            $("#table_body").append(html);
+                        })
+                        $('#table_research').DataTable({});
+                    }
+                })
+            };
+
+            $( function() { $( "#res_stdate" ).datepicker({ dateFormat : 'yy-mm-dd' }); });
+            $( function() { $( "#res_eddate" ).datepicker({ dateFormat : 'yy-mm-dd' }); });
+        </script>
+    </body>
+
+</html>

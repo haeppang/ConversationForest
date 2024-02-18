@@ -1,0 +1,1 @@
+var folder = '../mnt/hdd1/rice'
