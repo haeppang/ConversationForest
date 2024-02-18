@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+
 app.post('/idVerification', function(req, res) {
   // mySQL Connection
   var connection = mysql.createConnection({
