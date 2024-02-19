@@ -6,12 +6,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var app = express();
 var mysql = require('mysql');
+var xmlRequest = require('xhr2');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// 똥고냥이~~~
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,28 +21,45 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+app.get('/test', function(req, res) {
+  console.log("testtesttesttesttesttesttesttest")
+  res.send();
+});
 
-app.post('/idVerification', function(req, res) {
-  // mySQL Connection
-  var connection = mysql.createConnection({
-      host: "oogis.asuscomm.com",
-      port: "15020",
-      user: "choi",
-      password: "1518",
-      database: "oogis"
-  })
-  var id = req.body.id;
-  var pw = req.body.pw;
+app.post('/getChar', function(req, res) {
+  var xhr2 = new xmlRequest();
+  var url = req.body.url
+  var token = "bearer " + req.body.token
+  console.log(token)
+  xhr2.open("GET", url, true);
+  xhr2.setRequestHeader('accept', 'application/json');
+  xhr2.setRequestHeader('authorization', 'bearer ' + token);
+  xhr2.onreadystatechange = () => { };
+  xhr2.onload = () => { console.log(xhr2.response); };
+  xhr2.send();
+});
 
-  var sql = `SELECT * FROM login WHERE id = "` + id + `" AND pw = md5(` + pw + ");";
+// app.post('/idVerification', function(req, res) {
+//   // mySQL Connection
+//   var connection = mysql.createConnection({
+//       host: "oogis.asuscomm.com",
+//       port: "15020",
+//       user: "choi",
+//       password: "1518",
+//       database: "oogis"
+//   })
+//   var id = req.body.id;
+//   var pw = req.body.pw;
 
-  connection.query(sql, function(err, result) {
-    if (err) throw err;
+//   var sql = `SELECT * FROM login WHERE id = "` + id + `" AND pw = md5(` + pw + ");";
+
+//   connection.query(sql, function(err, result) {
+//     if (err) throw err;
     
-    if (result == "") res.send("");
-    else res.send(result);
-  })
-})
+//     if (result == "") res.send("");
+//     else res.send(result);
+//   })
+// })
 
 
 app.post('/register', function(req, res) {

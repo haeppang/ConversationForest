@@ -24,4 +24,8 @@ router.get('/register', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../views/register.html'));
 });
 
+router.get('/characters', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../views/characters.html'));
+})
+
 module.exports = router;
