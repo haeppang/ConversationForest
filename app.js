@@ -21,10 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-app.get('/test', function(req, res) {
-  console.log("testtesttesttesttesttesttesttest")
-  res.send();
-});
 
 app.post('/getChar', function(req, res) {
   var xhr2 = new xmlRequest();
