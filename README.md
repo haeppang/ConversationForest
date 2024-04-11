@@ -1,7 +1,7 @@
 <div>
     <img src="https://capsule-render.vercel.app/api?type=waving&color=2e2e2e&height=200&section=header&text=모여봐요%20소통의%20숲&fontSize=50&fontColor=ffd148" />
 </div>
-<div>
+<div align=center>
   <h3>
     <p>BackEnd : Spring, MySQL</p>
     <p>FrontEnd : HTML5, JQuery, Ajax, Bootstrap</p>
