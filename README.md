@@ -1,7 +1,7 @@
 <div>
     <img src="https://capsule-render.vercel.app/api?type=waving&color=2e2e2e&height=200&section=header&text=모여봐요%20소통의%20숲&fontSize=50&fontColor=ffd148" />
 </div>
-<div>
+<div align=center>
   <h3>
     <p>BackEnd : Spring, MySQL</p>
     <p>FrontEnd : HTML5, JQuery, Ajax, Bootstrap</p>
@@ -18,13 +18,14 @@
     <h3>목적 및 필요성</h3>
     <h4> ○ </h4>
     <h4> ○ </h4>
-    <h3>프로젝트 기간 : 약 1개월</h3>
+    <h3>프로젝트 기간 : 약 1개월 (2024.04 ~ )</h3>
+    <h4> ○ 4월 중으로 설계 완료 후 개발 시작</h4>
     <br>
     <h1>Ⅱ. 프로젝트 내용</h1>
     <h3>□ 세션 및 토큰을 이용한 사용자 계정 생성 및 로그인 모듈 개발<h3>
-    <h4> ❍ 메인 페이지에 현재 로그인 중인 사용자 및 로그아웃 중인 사용자 표시</h4>
+    <h4> ❍ 메인 페이지에 현재 로그인 중인 사용자 및 로그아웃 중인 사용자 표시 (테스트 후 가능하면 넣음)</h4>
     <h4> ❍ 각 사용자와 실시간 채팅</h4>
-	<h5>  - 개별 사용자간 채팅 및 채팅 내용 삭제 가능</h5>
+	<h5>  - 개별 및 여러 사용자간 채팅 가능</h5>
     <h4> ❍ 사용자 개인정보 관리 및 계정 탈퇴가 가능</h4>
     <br>
     <h3>□ 오픈 서버 또는 클로즈 서버 생성 모듈 개발</h3>
