@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>모여봐요 소통의 숲</title>
+        <link rel="stylesheet" href="css/domain.css">
+        <style>
+            li::before {
+                content: "";
+                float: left;
+                width: 1px;
+                height: 10px;
+                margin: 4px 10px;
+                background-color: rgba(0, 0, 0, .08);
+            }
+        </style>
+    </head>
+
+    <body class="login-page">
+        <div class="login-logo">
+            <a href="/"><b>소통의 숲</b></a>
+        </div>
+        <div class="login-box">
+            <!-- /.login-logo -->
+            <div class="card" style="box-shadow: none">
+                <div class="card-body login-card-body">
+
+                    <form action="/members/new" method="post">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="이메일">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="비밀번호">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember" style="font-weight: 450">로그인 정보 저장</label>
+                            </div>
+                        </div>
+                            <!-- /.col -->
+                        <div class="mb-3" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-success btn-block">로그인</button>
+                        </div>
+                    </form>
+
+                    <div class="mb-3" style="font-size: 11px; ">
+
+                        <ul style="float: right; list-style-type: none;">
+                            <li style="float: left;">
+                                <a href="forgot-password.html" class="text-center">회원가입</a>
+                            </li>
+                            <li style="float: left;">
+                                <a href="register.html" class="text-center">비밀번호 찾기</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+    </body>
+</html>
