@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>모여봐요 소통의 숲</title>
         <link rel="stylesheet" href="css/domain.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
         <style>
-            li::before {
+            li:nth-child(2)::before {
                 content: "";
                 float: left;
                 width: 1px;
@@ -25,8 +26,7 @@
             <!-- /.login-logo -->
             <div class="card" style="box-shadow: none">
                 <div class="card-body login-card-body">
-
-                    <form action="/members/new" method="post">
+                    <form action="/" method="post">
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="이메일">
                             <div class="input-group-append">
@@ -59,10 +59,10 @@
 
                         <ul style="float: right; list-style-type: none;">
                             <li style="float: left;">
-                                <a href="forgot-password.html" class="text-center">회원가입</a>
+                                <a href="/register" class="text-center">회원가입</a>
                             </li>
                             <li style="float: left;">
-                                <a href="register.html" class="text-center">비밀번호 찾기</a>
+                                <a href="register.html" class="text-center">비밀번호 분실</a>
                             </li>
                         </ul>
                     </div>

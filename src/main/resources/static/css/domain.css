@@ -33230,7 +33230,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .login-box, .register-box {
-    width: 480px;
+    width: 430px;
     margin: 40px auto 42px;
     padding: 0 69px;
     border: 1px solid rgba(0,0,0,.12);
@@ -33250,7 +33250,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-card-body, .register-card-body {
     color: #666;
-    padding: 55px 0 50px;
+    padding: 55px 0 45px;
     box-sizing: border-box;
 }
 
