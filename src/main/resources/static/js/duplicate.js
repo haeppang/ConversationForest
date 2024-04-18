@@ -1,12 +1,22 @@
 $(document).ready(function () {
-    $("#email").on("focusout", function () {
-
-        var id = $("#email").val();
-
-        if (id == '' || id.length == 0) {
-            $("#lEmail").css("color", "red").text("공백은 ID로 사용할 수 없습니다.");
-            return false;
+    document.querySelector('form').addEventListener('submit', function(e){
+        if(document.getElementById('email').value == '') {
+            e.preventDefault(); // 폼 전송 막는 함수
+            $("#lEmail").css("color", "red").text("아이디를 입력하세요.");
         }
+        if(document.getElementById('pw').value == '') {
+            e.preventDefault();
+            $("#lPw").css("color", "red").text("비밀번호를 입력하세요.");
+        } else $("#lPw").text("");
+        if(document.getElementById('userName').value == '') {
+            e.preventDefault();
+            $("#lName").css("color", "red").text("닉네임을 입력하세요.");
+        } else $("#lName").text("");
+    });
+
+    $("#email").on("focusout", function () {
+        var id = $("#email").val();
+        if (id == '' || id.length == 0) { return false; }
 
         //Ajax로 전송
         $.ajax({
@@ -23,8 +33,6 @@ $(document).ready(function () {
                     $("#lEmail").css("color", "red").text("사용 불가능한 ID 입니다.");
                 }
             }
-        }); //End Ajax
+        });
     });
-
-
 })

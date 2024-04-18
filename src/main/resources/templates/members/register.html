@@ -33,7 +33,7 @@
     <!-- /.login-logo -->
     <div class="card" style="box-shadow: none">
         <div class="card-body login-card-body">
-            <form action="register" method="post">
+            <form action="register" name="userRegister" method="post">
                 <div class="mb-3">
                     <div class="input-group">
                         <input type="email" name="email" id="email" class="form-control" placeholder="이메일">
@@ -44,29 +44,34 @@
                         </div>
                     </div>
                     <label id="lEmail"></label>
+                </div>
 
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="pw" class="form-control" placeholder="비밀번호">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
                         </div>
                     </div>
+                    <label id="lPw"></label>
                 </div>
-                <label id="lPw"></label>
-                <div class="input-group mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="닉네임">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-address-card"></span>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="userName" class="form-control" placeholder="닉네임">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-address-card"></span>
+                            </div>
                         </div>
                     </div>
+                    <label id="lName"></label>
                 </div>
-                <label id="lName"></label>
                 <!-- /.col -->
                 <div class="mb-3" style="margin-top: 25px;">
-                    <button type="submit" class="btn btn-success btn-block">회원가입</button>
+                    <button type="submit" class="btn btn-success btn-block" onclick="validation()">회원가입</button>
                 </div>
             </form>
 
