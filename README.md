@@ -15,7 +15,7 @@
 <br>
 <div>
     <h1>Ⅰ. 프로젝트 명 : 모여봐요 소통의 숲</h1>
-    <h3>□ 인원 : 3명</h3>
+    <h3>□ 개발 인원 : 3명</h3>
     <h4> ○ 최승호 https://github.com/OllyDI</h4>
     <h4> ○ 강소윤 https://github.com/haeppang</h4>
     <h4> ○ 양지원 https://github.com/dwd0258</h4>
