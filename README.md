@@ -19,6 +19,7 @@
     <h4> ○ 최승호 https://github.com/OllyDI</h4>
     <h4> ○ 강소윤 https://github.com/haeppang</h4>
     <h4> ○ 양지원 https://github.com/dwd0258</h4>
+    <br></br>
     <h3>□ 목적 및 필요성</h3>
     <h4> ○ 목적이 같은 사람들끼리의 소통??</h4>
     <h4> ○ </h4>
