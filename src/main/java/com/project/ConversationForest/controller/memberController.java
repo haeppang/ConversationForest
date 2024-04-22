@@ -2,6 +2,8 @@ package com.project.ConversationForest.controller;
 
 import com.project.ConversationForest.domain.Member;
 import com.project.ConversationForest.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class memberController {
@@ -29,8 +34,27 @@ public class memberController {
     }
 
 
-    @RequestMapping("/session_login")
-    public String sesionLogin(MemberForm memberForm) {
+    @ResponseBody
+    @PostMapping("session_login")
+    public String sesionLogin(@RequestParam("email") String email, @RequestParam("pw") String pw) {
+        Member member = new Member();
+        member.setEmail(email);
+        boolean res = true;
+
+        if (email.trim().isEmpty()) {
+            res = false;
+        }
+        if (!memberService.extractedMember(member)) {
+            res = false;
+        }
+        if (res == false) {
+            String encodePw = memberService.findPw(email).get().getPw();
+            boolean sessionKey = passwordEncoder.matches(pw, encodePw);
+
+            if (sessionKey) {
+
+            }
+        }
         return "OK";
     }
 
@@ -38,6 +62,7 @@ public class memberController {
     public String registerUser() {
         return "members/register";
     }
+
     @PostMapping("register")
     public String create(MemberForm memberForm) {
         Member member = new Member();
@@ -46,7 +71,7 @@ public class memberController {
         member.setName(memberForm.getName());
         memberService.join(member);
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @PostMapping("duplicate")

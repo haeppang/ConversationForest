@@ -3,6 +3,7 @@ package com.project.ConversationForest.repository;
 import com.project.ConversationForest.domain.Member;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class JpaMemberRepository implements MemberRepository {
@@ -27,6 +28,11 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByPw(String email) {
-        return Optional.empty();
+        List<Member> result = em.createQuery("select m from Member m where m.email = :email", Member.class)
+                .setParameter("email", email)
+                .getResultList();
+
+        return result.stream().findAny();
+
     }
 }

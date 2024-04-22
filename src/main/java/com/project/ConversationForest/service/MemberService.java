@@ -4,6 +4,8 @@ import com.project.ConversationForest.domain.Member;
 import com.project.ConversationForest.repository.MemberRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Transactional
@@ -31,5 +33,9 @@ public class MemberService {
                     res.set(false);
                 });
         return res.get();
+    }
+
+    public Optional<Member> findPw(String email) {
+        return memberRepository.findByPw(email);
     }
 }
