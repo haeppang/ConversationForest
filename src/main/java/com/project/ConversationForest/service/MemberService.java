@@ -1,8 +1,11 @@
 package com.project.ConversationForest.service;
 
+
+
 import com.project.ConversationForest.domain.Member;
 import com.project.ConversationForest.repository.MemberRepository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -33,3 +36,4 @@ public class MemberService {
         return res.get();
     }
 }
+
