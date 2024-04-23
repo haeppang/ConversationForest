@@ -14,6 +14,7 @@ $(document).ready(function () {
         } else $("#lName").text("");
     });
 
+
     $("#email").on("focusout", function () {
         var id = $("#email").val();
         if (id == '' || id.length == 0) { return false; }
