@@ -43,8 +43,13 @@ public class memberController {
 
     @ResponseBody
     @PostMapping("session_login")
-    public String sesionLogin(MemberForm form, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String sesionLogin(MemberForm form, @RequestParam("cookie") boolean cookie, HttpSession session, RedirectAttributes redirectAttributes) {
         Optional<Member> member = memberService.findUser(form.getEmail());
+
+        if (cookie) {
+
+        }
+
 
         if (member != null && passwordEncoder.matches(form.getPw(), member.get().getPw())) {
             // 로그인 성공 시 세션에 사용자 정보를 저장합니다.
@@ -52,7 +57,7 @@ public class memberController {
             return "redirect:/"; // 로그인 후 이동할 페이지를 지정합니다.
         } else {
             // 로그인 실패 시 에러 메시지를 전달합니다.
-            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
+//            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
             return "redirect:/login"; // 로그인 실패 시 다시 로그인 페이지로 이동합니다.
         }
     }
