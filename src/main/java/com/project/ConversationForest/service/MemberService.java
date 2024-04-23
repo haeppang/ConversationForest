@@ -35,7 +35,7 @@ public class MemberService {
         return res.get();
     }
 
-    public Optional<Member> findPw(String email) {
-        return memberRepository.findByPw(email);
+    public Optional<Member> findUser(String email) {
+        return memberRepository.findByUser(email);
     }
 }

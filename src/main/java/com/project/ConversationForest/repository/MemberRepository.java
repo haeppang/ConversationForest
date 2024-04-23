@@ -8,5 +8,5 @@ public interface MemberRepository {
     Member save(Member member);
 
     Optional<Member>findByEmail(String email);
-    Optional<Member> findByPw(String email);
+    Optional<Member> findByUser(String email);
 }
