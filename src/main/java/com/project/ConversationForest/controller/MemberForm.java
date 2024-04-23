@@ -5,6 +5,8 @@ public class MemberForm {
     private String name;
     private String pw;
 
+    private boolean cookie;
+
     public String getEmail() {
         return email;
     }
@@ -27,5 +29,13 @@ public class MemberForm {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    public boolean isCookie() {
+        return cookie;
+    }
+
+    public void setCookie(boolean cookie) {
+        this.cookie = cookie;
     }
 }
