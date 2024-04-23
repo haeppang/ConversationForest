@@ -23,7 +23,7 @@ public class SecurityConfig {
 //                .cors(AbstractHttpConfigurer::disable)
 //                .httpBasic(AbstractHttpConfigurer::disable)
 //                .authorizeHttpRequests((auth) -> auth
-//                        .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/session_login", "/livereload").permitAll())
+//                        .requestMatchers("/", "/login", "/register", "/session_login", "/livereload", "/css/**", "/js/**", "/plugins/**").permitAll())
 //				.formLogin(formLogin -> formLogin
 //						.loginPage("/login")
 //						.defaultSuccessUrl("/"))
