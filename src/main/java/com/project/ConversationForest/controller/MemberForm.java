@@ -6,8 +6,6 @@ public class MemberForm {
     private String pw;
     private boolean cookie;
 
-    private boolean cookie;
-
     public String getEmail() {
         return email;
     }

@@ -2,6 +2,7 @@ package com.project.ConversationForest.controller;
 
 import com.project.ConversationForest.domain.Member;
 import com.project.ConversationForest.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class memberController {
 
     @PostMapping("session_login")
 
-    public String sesionLogin(MemberForm form, HttpSession session, RedirectAttributes redirectAttributes, HttpServletResponse response) {
+    public String sesionLogin(MemberForm form, HttpServletRequest request, RedirectAttributes redirectAttributes, HttpServletResponse response) {
         Optional<Member> member = memberService.findUser(form.getEmail());
 
 
@@ -50,22 +51,18 @@ public class memberController {
             // 로그인 성공 시 세션에 사용자 정보를 저장합니다.
 
             if (form.isCookie()) {
-                Cookie cookie = null;
-
-                cookie = new Cookie("email", form.getEmail());
+                Cookie cookie = new Cookie("cookie", form.getEmail());
                 cookie.setMaxAge(24 * 30 * 60 * 60 * 1000); //30일간 저장
                 response.addCookie(cookie);
-
-            }else {
-                Cookie cookie = null;
-
-                cookie = new Cookie("email", "");
+            } else {
+                Cookie cookie = new Cookie("cookie", "");
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
-            redirectAttributes.addFlashAttribute("success", "로그인에 성공했습니다");
 
-            session.setAttribute("loggedInUser", member);
+            redirectAttributes.addFlashAttribute("success", "로그인에 성공했습니다");
+            HttpSession session = request.getSession();
+            session.setAttribute("session", member);
             return "redirect:/"; // 로그인 후 이동할 페이지를 지정합니다.
         } else {
             // 로그인 실패 시 에러 메시지를 전달합니다.
