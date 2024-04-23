@@ -2,7 +2,7 @@ package com.project.ConversationForest.controller;
 
 import com.project.ConversationForest.domain.Member;
 import com.project.ConversationForest.service.MemberService;
-import lombok.RequiredArgsConstructor;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class memberController {
@@ -38,9 +41,20 @@ public class memberController {
     }
 
 
-    @RequestMapping("/session_login")
-    public String sesionLogin(MemberForm memberForm) {
-        return "OK";
+    @ResponseBody
+    @PostMapping("session_login")
+    public String sesionLogin(MemberForm form, HttpSession session, RedirectAttributes redirectAttributes) {
+        Optional<Member> member = memberService.findUser(form.getEmail());
+
+        if (member != null && passwordEncoder.matches(form.getPw(), member.get().getPw())) {
+            // 로그인 성공 시 세션에 사용자 정보를 저장합니다.
+            session.setAttribute("loggedInUser", member);
+            return "redirect:/"; // 로그인 후 이동할 페이지를 지정합니다.
+        } else {
+            // 로그인 실패 시 에러 메시지를 전달합니다.
+            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
+            return "redirect:/login"; // 로그인 실패 시 다시 로그인 페이지로 이동합니다.
+        }
     }
 
     @GetMapping("register")
@@ -49,14 +63,15 @@ public class memberController {
     }
 
     @PostMapping("register")
-    public String create(MemberForm memberForm) {
+    public String create(MemberForm memberForm, Model model) {
         Member member = new Member();
         member.setEmail(memberForm.getEmail());
         member.setPw(passwordEncoder.encode(memberForm.getPw()));
         member.setName(memberForm.getName());
         memberService.join(member);
 
-        return "redirect:/";
+        model.addAttribute("msg", "로그인 성공");
+        return "redirect:/login";
     }
 
 

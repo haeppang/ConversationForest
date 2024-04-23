@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,9 +26,9 @@
             <!-- /.login-logo -->
             <div class="card" style="box-shadow: none">
                 <div class="card-body login-card-body">
-                    <form action="/" method="post">
+                    <form action="/session_login" method="post">
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="이메일">
+                            <input type="email" name="email" class="form-control" placeholder="이메일">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="비밀번호">
+                            <input type="password" name="pw" class="form-control" placeholder="비밀번호">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
