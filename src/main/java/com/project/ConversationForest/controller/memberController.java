@@ -71,7 +71,6 @@ public class memberController {
         }
 
 
-
     }
 
     @GetMapping("register")
