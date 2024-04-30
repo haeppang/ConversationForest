@@ -60,13 +60,12 @@ public class memberController {
                 response.addCookie(cookie);
             }
 
-            redirectAttributes.addFlashAttribute("success", "로그인에 성공했습니다");
             HttpSession session = request.getSession();
             session.setAttribute("session", member);
             return "redirect:/"; // 로그인 후 이동할 페이지를 지정합니다.
         } else {
             // 로그인 실패 시 에러 메시지를 전달합니다.
-            redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+            redirectAttributes.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "redirect:/login"; // 로그인 실패 시 다시 로그인 페이지로 이동합니다.
         }
     }
@@ -77,14 +76,14 @@ public class memberController {
     }
 
     @PostMapping("register")
-    public String create(MemberForm memberForm, Model model) {
+    public String create(MemberForm memberForm, RedirectAttributes redirectAttributes) {
         Member member = new Member();
         member.setEmail(memberForm.getEmail());
         member.setPw(passwordEncoder.encode(memberForm.getPw()));
         member.setName(memberForm.getName());
         memberService.join(member);
 
-        model.addAttribute("msg", "로그인 성공");
+        redirectAttributes.addFlashAttribute("msg", "회원가입이 완료되었습니다.");
         return "redirect:/login";
     }
 
