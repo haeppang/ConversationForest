@@ -63,4 +63,6 @@
     <img src="https://github.com/OllyDI/Conversation_Forest/assets/71002104/2619cf36-6238-4693-99d5-dffd2540d407">
     <h3>□ DB ER다이어그램</h3>
     <img src="https://github.com/OllyDI/Conversation_Forest/assets/83630075/27109373-df00-488b-a045-3085ef36644b">
+    <h3>DB 설계</h3>
+    <img src="https://github.com/haeppang/ConversationForest/assets/83630075/d2de4209-e619-4ce5-a73a-b09329adc621">
 </div>
