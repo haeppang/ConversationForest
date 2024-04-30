@@ -11,5 +11,4 @@ $(document).ready(function () {
             document.querySelector("input[name='email']").value = userId;
         };
 
-
 });
