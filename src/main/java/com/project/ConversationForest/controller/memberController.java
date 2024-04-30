@@ -69,8 +69,6 @@ public class memberController {
             redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "redirect:/login"; // 로그인 실패 시 다시 로그인 페이지로 이동합니다.
         }
-
-
     }
 
     @GetMapping("register")
