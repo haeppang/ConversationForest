@@ -64,4 +64,5 @@
     <h3>□ DB ER다이어그램</h3>
     <img src="https://github.com/OllyDI/Conversation_Forest/assets/83630075/27109373-df00-488b-a045-3085ef36644b">
     <h3>□ DB 모델</h3>
+    <img src="https://github.com/OllyDI/Conversation_Forest/assets/71002104/02b37560-c152-4fad-ac91-96f09eba2a95">
 </div>
