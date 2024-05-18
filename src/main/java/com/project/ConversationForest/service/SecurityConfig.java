@@ -23,10 +23,12 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/login", "/register", "/session_login", "/livereload", "/css/**", "/js/**", "/plugins/**").permitAll())
-				.formLogin(formLogin -> formLogin
-						.loginPage("/login")
-						.defaultSuccessUrl("/"))
+                        .requestMatchers("/", "/login", "/register", "/session_login", "/livereload", "/css/**", "/js/**", "/plugins/**")
+                        .permitAll().anyRequest().authenticated())
+//				.formLogin(formLogin -> formLogin
+//						.loginPage("/login")
+//                        .loginProcessingUrl("/session_login")
+//						.defaultSuccessUrl("/"))
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true))
