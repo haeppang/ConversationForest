@@ -62,4 +62,8 @@
     <img src="https://github.com/OllyDI/Conversation_Forest/assets/71002104/4a781b80-3cb2-42c6-9032-0f4d8b2c06fe">
     <h3>□ 시퀀스 다이어그램</h3>
     <img src="https://github.com/OllyDI/Conversation_Forest/assets/71002104/2619cf36-6238-4693-99d5-dffd2540d407">
+    <h3>□ DB ER다이어그램</h3>
+    <img src="https://github.com/OllyDI/Conversation_Forest/assets/83630075/27109373-df00-488b-a045-3085ef36644b">
+    <h3>□ DB 모델</h3>
+    <img src="https://github.com/OllyDI/Conversation_Forest/assets/71002104/02b37560-c152-4fad-ac91-96f09eba2a95">
 </div>
