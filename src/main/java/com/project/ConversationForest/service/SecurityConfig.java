@@ -13,28 +13,30 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http    .csrf(AbstractHttpConfigurer::disable)
-//                .cors(AbstractHttpConfigurer::disable)
-//                .httpBasic(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests((auth) -> auth
-//                        .requestMatchers("/", "/login", "/register", "/session_login", "/livereload", "/css/**", "/js/**", "/plugins/**").permitAll())
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http    .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/", "/login", "/register", "/session_login", "/livereload", "/css/**", "/js/**", "/plugins/**")
+                        .permitAll().anyRequest().authenticated())
 //				.formLogin(formLogin -> formLogin
 //						.loginPage("/login")
+//                        .loginProcessingUrl("/session_login")
 //						.defaultSuccessUrl("/"))
-//                .logout((logout) -> logout
-//                        .logoutSuccessUrl("/login")
-//                        .invalidateHttpSession(true))
-//                .sessionManagement(session -> session
-//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                );
-//        return http.build();
-//    }
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true))
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+        return http.build();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
